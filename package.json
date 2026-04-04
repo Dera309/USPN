@@ -8,9 +8,9 @@
     "client": "vite",
     "pre-server": "powershell -Command \"Get-NetTCPConnection -LocalPort 5005 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } ; exit 0\"",
     "server": "npm run pre-server && nodemon server/index.js",
-    "tw": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
-    "tw:watch": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
-    "build": "npm run tw && vite build",
+    "tw": "npx tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
+    "tw:watch": "npx tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
+    "build": "npm run tw && npx vite build",
     "preview": "vite preview",
     "seed": "node server/seed.js",
     "start": "node server/index.js"

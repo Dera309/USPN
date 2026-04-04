@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import fs from 'fs'
 
 import authRoutes     from './routes/auth.js'
 import shipmentRoutes from './routes/shipments.js'
@@ -57,9 +58,21 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().t
 const distPath = path.join(__dirname, '../dist')
 app.use(express.static(distPath))
 
-// Catch-all: serve index.html for unknown routes (enables SPA routing)
+// Catch-all: serve the correct built HTML page, or fall back to index.html
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Endpoint not found.' })
+
+  // Try to serve the exact requested file from dist
+  const requestedFile = path.join(distPath, req.path)
+  const htmlFile = requestedFile.endsWith('.html') ? requestedFile : requestedFile + '.html'
+
+  if (fs.existsSync(requestedFile) && !fs.statSync(requestedFile).isDirectory()) {
+    return res.sendFile(requestedFile)
+  }
+  if (fs.existsSync(htmlFile)) {
+    return res.sendFile(htmlFile)
+  }
+  // Fallback to index.html
   res.sendFile(path.join(distPath, 'index.html'))
 })
 

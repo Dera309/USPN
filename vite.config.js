@@ -3,7 +3,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: '/',
   server: {
     port: 3000,
     strictPort: false,

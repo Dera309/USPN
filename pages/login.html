@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>USPN | Secure Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script type="module" src="/src/pages/login.js"></script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.bg-login-hero{background-image:linear-gradient(135deg,rgba(0,0,0,0.95) 0%,rgba(13,28,50,0.85) 100%),url(https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80);background-size:cover;background-position:center}
+@media(min-width:768px){body{min-height:max(884px,100dvh)}}
+</style>
+</head>
+<body class="bg-slate-950 font-body text-on-surface antialiased">
+
+<div class="flex min-h-screen">
+  <!-- Left: Editorial Panel -->
+  <div class="relative hidden lg:flex lg:w-3/5 bg-login-hero flex-col justify-between p-16">
+    <div class="z-10">
+      <a href="../index.html" class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-secondary-container text-4xl">local_shipping</span>
+        <span class="font-headline text-2xl font-black uppercase tracking-widest text-white">USPN</span>
+      </a>
+    </div>
+    <div class="z-10 max-w-xl">
+      <span class="font-label text-sm uppercase tracking-[0.3em] text-secondary-container font-bold mb-4 block">Global Operations Portal</span>
+      <h1 class="font-headline text-6xl font-extrabold text-white tracking-tighter leading-[1.1]">Command<br/>Your Cargo.</h1>
+      <p class="mt-8 text-slate-400 text-lg leading-relaxed font-light">Access your global operations command center. Track shipments, manage bookings, and monitor your fleet in real-time.</p>
+    </div>
+    <div class="z-10 flex gap-12">
+      <div><div class="text-white font-headline text-3xl font-bold">99.8%</div><div class="text-slate-500 text-xs uppercase tracking-widest mt-1">On-Time Rate</div></div>
+      <div><div class="text-white font-headline text-3xl font-bold">142+</div><div class="text-slate-500 text-xs uppercase tracking-widest mt-1">Countries</div></div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+  </div>
+
+  <!-- Right: Login Form -->
+  <div class="w-full lg:w-2/5 bg-slate-950 flex flex-col justify-center px-8 sm:px-16 md:px-24 py-12 relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-[100px]"></div>
+    <div class="w-full max-w-md mx-auto z-10">
+      <div class="mb-12">
+        <div class="lg:hidden flex items-center gap-2 mb-8">
+          <span class="material-symbols-outlined text-secondary-container text-2xl">local_shipping</span>
+          <span class="font-headline text-lg font-black uppercase tracking-widest text-white">USPN</span>
+        </div>
+        <h2 class="font-headline text-4xl font-extrabold text-white tracking-tight mb-2">Welcome Back</h2>
+        <p class="text-slate-500 font-medium">Enter your credentials to access the portal.</p>
+      </div>
+
+      <!-- Error Banner -->
+      <div id="error-banner" class="hidden mb-6 bg-error-container text-on-error-container px-4 py-3 rounded-lg text-sm font-medium"></div>
+
+      <form id="login-form" class="space-y-6" novalidate>
+        <div class="space-y-2">
+          <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold" for="email">Email Address</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">alternate_email</span>
+            </div>
+            <input id="email" name="email" type="email" required placeholder="name@company.com"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="email-err" class="hidden text-xs text-red-400 mt-1"></p>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold" for="password">Password</label>
+            <a href="forgot-password.html" class="text-xs font-semibold text-secondary-container hover:text-secondary transition-colors uppercase tracking-widest">Forgot Password?</a>
+          </div>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">lock</span>
+            </div>
+            <input id="password" name="password" type="password" required placeholder="••••••••••••"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="password-err" class="hidden text-xs text-red-400 mt-1"></p>
+        </div>
+
+        <div class="flex items-center">
+          <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-slate-800 bg-slate-900 text-secondary focus:ring-secondary/20"/>
+          <label for="remember-me" class="ml-3 block text-sm text-slate-400 font-medium select-none cursor-pointer">Remember this workstation</label>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-secondary-container text-on-secondary-container font-headline font-extrabold py-5 rounded-lg shadow-2xl shadow-secondary-container/20 hover:bg-secondary hover:text-white hover:scale-[1.01] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+            Sign In to Dashboard
+            <span class="material-symbols-outlined text-xl">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-8 text-center">
+        <p class="text-slate-500 text-sm">Don't have an account? <a href="register.html" class="text-secondary-container font-semibold hover:text-secondary transition-colors">Register here</a></p>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-slate-900">
+        <p class="text-slate-600 text-xs text-center font-medium uppercase tracking-[0.2em]">© 2024 USPN. Global Security Verified.</p>
+      </div>
+    </div>
+    <div class="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none select-none">
+      <span class="font-headline text-8xl font-black text-white">USPN</span>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+

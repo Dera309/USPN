@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#0d1c32",
+              "on-surface-variant": "#44474d",
+              "surface-dim": "#d9dadb",
+              "on-primary-fixed-variant": "#39475f",
+              "secondary-container": "#fe6b00",
+              "on-error": "#ffffff",
+              "surface-container-low": "#f3f4f5",
+              "inverse-surface": "#2e3132",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-on-surface": "#f0f1f2",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "on-secondary-fixed": "#351000",
+              "error": "#ba1a1a",
+              "tertiary-container": "#0c1c32",
+              "inverse-primary": "#b9c7e4",
+              "primary-fixed-dim": "#b9c7e4",
+              "on-tertiary-container": "#7684a0",
+              "tertiary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#0d1c32",
+              "surface-container-high": "#e7e8e9",
+              "primary-fixed": "#d6e3ff",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#7a3000",
+              "surface-tint": "#515f78",
+              "on-tertiary-fixed": "#0c1c32",
+              "tertiary-fixed": "#d5e3ff",
+              "primary": "#000000",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#a04100",
+              "surface-container": "#edeeef",
+              "secondary-fixed-dim": "#ffb693",
+              "on-tertiary-fixed-variant": "#394760",
+              "surface": "#f8f9fa",
+              "background": "#f8f9fa",
+              "outline-variant": "#c5c6cd",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1d",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "tertiary-fixed-dim": "#b8c7e5",
+              "on-primary-container": "#76849f",
+              "outline": "#75777e",
+              "secondary-fixed": "#ffdbcc",
+              "on-secondary-container": "#572000"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #000000 0%, #0D1C32 100%);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-xl shadow-slate-900/5 dark:shadow-none">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-500 text-3xl">local_shipping</span>
+<span class="text-2xl font-black uppercase tracking-widest text-slate-950 dark:text-white font-headline">USPN</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-orange-600 dark:text-orange-400 font-extrabold border-b-2 border-orange-600 py-1 transition-colors duration-300" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Tracking</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Solutions</a>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-bold tracking-tight scale-95 active:opacity-80 transition-all hover:bg-secondary-container hover:text-on-secondary-container">
+                Track Shipment
+            </button>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex items-center overflow-hidden kinetic-gradient">
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover" data-alt="dramatic wide shot of a massive cargo ship at sea during twilight with industrial lights reflecting on dark water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhx515vHYYQPZ4nC1eDaoqMq8IKl52Evi_OG0Ctnhm8kHHfyxZM6v_I0d5MwiEB5EPbzNbRWETDH68FwmE5DnNd52IdCeHs__szmLLyVE3DqOskxhp4sffFvD9eokJ85nmXbl5mfk8mOfSanbtmXknflWAs2zx6az251Mq7oJto2mVXiHH1HOctI7-paQLJssfjDZYVeynQIj1BWpdHz4gwbkXmq6RZGUZcj9vmmW69yf6vDv3FhiNbZs8RvAiWT2GSozj0ifjy1s"/>
+</div>
+<div class="relative max-w-7xl mx-auto px-8 w-full py-24 grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="space-y-2">
+<span class="text-secondary font-bold tracking-widest uppercase text-sm font-label">Global Connectivity</span>
+<h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white leading-tight tracking-tighter">
+                            Architects of <br/><span class="text-secondary-container">Global Flow.</span>
+</h1>
+</div>
+<p class="text-xl text-slate-300 max-w-lg leading-relaxed font-light">
+                        Precision logistics for the modern enterprise. We don't just move cargo; we engineer the kinetic pathways of international commerce.
+                    </p>
+<!-- Quick Search / Track -->
+<div class="glass-panel bg-white/10 p-2 rounded-xl flex flex-col md:flex-row gap-2 max-w-xl outline-variant/20 border border-white/10">
+<div class="flex-grow flex items-center px-4 gap-3 bg-surface-container-lowest/10 rounded-lg">
+<span class="material-symbols-outlined text-white/50">search</span>
+<input class="bg-transparent border-none text-white placeholder:text-white/40 focus:ring-0 w-full py-4 font-body" placeholder="Enter Tracking Number..." type="text"/>
+</div>
+<button class="bg-secondary text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary-container transition-all whitespace-nowrap">
+                            Track Status
+                        </button>
+</div>
+</div>
+<div class="hidden md:block relative">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/20 blur-[100px] rounded-full"></div>
+<div class="relative glass-panel bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-2xl">
+<div class="flex justify-between items-center mb-12">
+<div>
+<p class="text-white/50 text-xs font-label uppercase tracking-widest">Active Manifest</p>
+<h3 class="text-white text-xl font-headline font-bold">SHA-0921-LHR</h3>
+</div>
+<span class="bg-secondary-container/20 text-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">In Transit</span>
+</div>
+<!-- Route Tracker Thread -->
+<div class="relative flex flex-col gap-10">
+<div class="absolute left-[11px] top-2 bottom-2 w-px bg-white/20"></div>
+<div class="flex items-center gap-6 relative">
+<div class="w-6 h-6 rounded-full bg-secondary ring-4 ring-secondary/20 z-10"></div>
+<div>
+<p class="text-white font-bold text-sm">Shanghai Port</p>
+<p class="text-white/40 text-xs">Departed Oct 12, 04:30 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-6 relative">
+<div class="w-6 h-6 rounded-full bg-secondary-container z-10 animate-pulse"></div>
+<div>
+<p class="text-white font-bold text-sm">Indian Ocean Transit</p>
+<p class="text-white/40 text-xs">Vessel: Northern Star</p>
+</div>
+</div>
+<div class="flex items-center gap-6 relative opacity-30">
+<div class="w-6 h-6 rounded-full bg-white/50 z-10"></div>
+<div>
+<p class="text-white font-bold text-sm">London Gateway</p>
+<p class="text-white/40 text-xs">Estimated Arrival Oct 28</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Services: Asymmetric Bento Grid -->
+<section class="py-32 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-2xl">
+<span class="text-secondary font-bold tracking-widest uppercase text-xs font-label">Our Expertise</span>
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface mt-4 leading-tight">
+                            Multi-Modal Solutions for <br/>Complex Global Supply Chains.
+                        </h2>
+</div>
+<a class="text-secondary font-bold flex items-center gap-2 group mb-2 font-label uppercase tracking-wider text-sm" href="#">
+                        View All Services <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[600px]">
+<!-- Air Freight -->
+<div class="md:col-span-7 bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-10 ambient-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="commercial cargo plane loading containers at night under bright hangar lights with high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6lxfKE6UFtoV5iwkuBrEfWy6BcWW5LSCDADZI1B_jgZVP51J682PPP1kW7tvbZeFXbTltllmECQbIV9390Qhub4PBrdfmV2wLM9GmBikbuvCoWHriC3e513z77bvhSZFelx4rjsWnojOCTA2BKjzAKMdR1YYpV5RCY7VbPjq3wV_CaXipOVI-1cJ3JwiGblWLdGK7R4aShdI3U60-EHYJ2mhgTf-kye8EjyyliMNBgrYFDNOCNgli9BznOGy48xsywlBm_9vnb5M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-3xl font-headline font-bold mb-2">Air Expedited</h3>
+<p class="text-white/70 max-w-md font-light">Next-flight-out capabilities for time-critical components and luxury goods worldwide.</p>
+</div>
+</div>
+<!-- Ocean Freight -->
+<div class="md:col-span-5 bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-10 ambient-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="stack of colorful shipping containers in a high-tech automated port terminal with robotic cranes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUoBoHyzVjrWYO6fzvNTnqPmkVqC4nKI2dU7SwKM3n-2hYGM2NaB4rOR46MT_mwbxb_TLJ54TxjdGmlBDMNxsTksp7PFLFgy3d7DTNomI9H3FAt-E8ruTlMXT3E4HK18LHAccS33V_mR5zWMSNmGW6L9nVO1Ax6Ak8dFPYghjEpUMLpXzW-REBrxd8xmNlzMQBWiuCbhffWJGbIwq-7Wx7ZuBTRvK44Cb04C5hQwrs7-zUsqsNKMsGNmyTSDRFbQwmKhKYCnpZzsI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-3xl font-headline font-bold mb-2">Ocean Link</h3>
+<p class="text-white/70 font-light">Sustainable LCL and FCL solutions connecting major international ports with precision.</p>
+</div>
+</div>
+<!-- Land Logistics -->
+<div class="md:col-span-5 bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-10 ambient-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="modern semi-truck driving on a scenic highway at dawn with soft orange light hitting the cab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH83z5gUk04kkhNxHwmEiVBWbGfYX4uRw4EmmiFd0zEge4s63SyInF1IQendGOfv_gwgxuE76edhXPAoMb-HG0qjX76bBYuA67mFl4-KvTqe15oLWC4nVhER8RCB9IuyxHUNDQ7qYWEakzlOiRiS0weMWNf0ftaR-4O5yLcFwQ1jM7-c2WDHQxF0xhwGJk3RimXhnbL8Tv1-l_UOuj4RKF0Q5EItDNzy06tJhdPE-anhZXdOWsGDf3-TV-N0WbYOdYEuz0j9WBVno"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-3xl font-headline font-bold mb-2">Land Network</h3>
+<p class="text-white/70 font-light">Last-mile excellence and regional trucking fleets with real-time telematics.</p>
+</div>
+</div>
+<!-- Warehousing -->
+<div class="md:col-span-7 bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-10 ambient-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="high-tech warehouse interior with tall shelves and automated guided vehicles moving through the aisles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbgt0LX6u_eMqR0O1w3_edshKytpEAigdRET-fSzZ2iAczb9fVBWsp3t3VhxWzOx4RDK3dWYD68iV3iqRJaccs47bzLiFIPnmOVi_zjSPK6i1pr_a9Kzz6DiwAuIc4ngGvzf8HvYVKaBLkN07BfANpd1SqJWVUDUgdNLdJNAPHcuUEGNifU0Uby2ZljpGlOthBE6u3ayfYskZ-peRc7JeyFF65XfSfdFE8VZhmjfLzDmtWDj5bpzACGtmXDM2cNZSuAv1ByFehrdc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="text-white text-3xl font-headline font-bold mb-2">Smart Inventory</h3>
+<p class="text-white/70 max-w-md font-light">AI-driven warehousing and fulfillment hubs in strategic global trade zones.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section class="py-32 bg-primary-container text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<div class="w-full h-full border-l border-white/20 transform skew-x-12"></div>
+</div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid lg:grid-cols-2 gap-24 items-center">
+<div class="space-y-12">
+<div class="space-y-4">
+<span class="text-secondary-container font-bold tracking-widest uppercase text-xs font-label">The Competitive Edge</span>
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold leading-tight">
+                                Built for Reliability. <br/>Driven by Technology.
+                            </h2>
+<p class="text-on-primary-container text-lg leading-relaxed font-light">
+                                We combine decades of industrial logistics expertise with cutting-edge digital infrastructure to provide a service that is both robust and agile.
+                            </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+<div class="space-y-3">
+<span class="material-symbols-outlined text-secondary-container text-4xl">verified_user</span>
+<h4 class="font-headline font-bold text-xl">Tier-1 Security</h4>
+<p class="text-on-primary-container text-sm leading-relaxed">Full insurance coverage and 24/7 terminal surveillance for all high-value assets.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-secondary-container text-4xl">monitoring</span>
+<h4 class="font-headline font-bold text-xl">Real-Time Data</h4>
+<p class="text-on-primary-container text-sm leading-relaxed">IoT-enabled containers provide live temperature, humidity, and location tracking.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-secondary-container text-4xl">eco</span>
+<h4 class="font-headline font-bold text-xl">Carbon Neutral</h4>
+<p class="text-on-primary-container text-sm leading-relaxed">Committed to net-zero logistics through SAF aviation and electric trucking.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-secondary-container text-4xl">support_agent</span>
+<h4 class="font-headline font-bold text-xl">Expert Support</h4>
+<p class="text-on-primary-container text-sm leading-relaxed">Dedicated logistics managers for every account, available around the clock.</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square bg-white/5 rounded-full absolute -inset-10 animate-pulse border border-white/10"></div>
+<div class="relative rounded-2xl overflow-hidden ambient-shadow h-[500px]">
+<img class="w-full h-full object-cover" data-alt="professional logistics coordinator in a modern tech-filled control room looking at complex data charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1qqbrVGdveKcoPG-6n8MyoCtEyf3dzrZTXOtXmZeDCGEpdC30FaXxzZGkbG_A9L87jdSOWfI2N0Ek-rMe-uTeOJjcfEp_rvU73LckuSv4svYIsI_7FcYwX5xjt1Rv4gxWLUVEJ6YjEld7Yzif58OEKUn9t9PdCFU5EXVzWtaVg3liSL6yxkB05nZBLbuAaixirf2swmhne03aYcB0Cz91wqHFypImuCcKgMXoGLibW9vc7tkZNnNDfMA9z_ZZZKGvQOK3S7Q-9ck"/>
+<div class="absolute bottom-0 left-0 right-0 glass-panel bg-white/10 p-8 border-t border-white/20">
+<div class="flex items-center justify-around text-center">
+<div>
+<p class="text-3xl font-headline font-extrabold text-secondary-container">99.8%</p>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mt-1">On-Time Rate</p>
+</div>
+<div class="w-px h-10 bg-white/10"></div>
+<div>
+<p class="text-3xl font-headline font-extrabold text-secondary-container">142+</p>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mt-1">Countries</p>
+</div>
+<div class="w-px h-10 bg-white/10"></div>
+<div>
+<p class="text-3xl font-headline font-extrabold text-secondary-container">12M</p>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mt-1">Tons / Year</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Badges -->
+<section class="py-16 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8 flex flex-wrap justify-between items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+<span class="text-2xl font-black font-headline tracking-tighter text-on-surface">ISO 9001</span>
+<span class="text-2xl font-black font-headline tracking-tighter text-on-surface">AEO CERTIFIED</span>
+<span class="text-2xl font-black font-headline tracking-tighter text-on-surface">IATA AGENT</span>
+<span class="text-2xl font-black font-headline tracking-tighter text-on-surface">SMETA COMPLIANT</span>
+<span class="text-2xl font-black font-headline tracking-tighter text-on-surface">FIATA</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-slate-950 dark:bg-black border-t border-slate-800/50">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500 text-2xl">local_shipping</span>
+<span class="text-lg font-bold text-white font-headline uppercase tracking-widest">USPN</span>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                    Pioneering high-precision global logistics and supply chain architecture for industry leaders worldwide.
+                </p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-500 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-8 h-8 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-500 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">hub</span>
+</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold font-headline">Navigation</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Home</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Services</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Tracking</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold font-headline">Resources</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Documentation</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Global Ports Map</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 text-sm hover:text-orange-400 transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold font-headline">Newsletter</h4>
+<p class="text-slate-400 text-sm">Get logistics insights and market updates directly in your inbox.</p>
+<form class="flex flex-col gap-2">
+<input class="bg-slate-900 border-slate-800 text-white rounded-lg p-3 text-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Your email" type="email"/>
+<button class="bg-orange-500 text-white font-bold rounded-lg p-3 text-sm hover:bg-orange-600 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-inter text-sm tracking-normal text-slate-400">© 2024 USPN. All rights reserved.</p>
+<div class="flex gap-8 text-xs text-slate-600 font-label uppercase tracking-widest">
+<span>London</span>
+<span>Shanghai</span>
+<span>New York</span>
+<span>Singapore</span>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>About Us | USPN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/pages/about.js"></script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .kinetic-gradient {
+      background: linear-gradient(135deg, #000000 0%, #0D1C32 100%)
+    }
+
+    .ambient-shadow {
+      box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04)
+    }
+
+    @media(min-width:768px) {
+      body {
+        min-height: max(884px, 100dvh)
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="fixed top-0 w-full z-[1000] bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5">
+    <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-orange-600 text-3xl">local_shipping</span>
+        <span class="text-2xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../index.html" class="text-slate-600 font-medium hover:text-orange-500 transition-colors">Home</a>
+
+        <!-- Services Dropdown-Item -->
+        <div class="nav-item-dropdown">
+          <a href="services.html"
+            class="flex items-center gap-1 text-slate-600 font-medium hover:text-orange-500 transition-colors">
+            Services <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="services.html#air" class="nav-dropdown-item">Air Expedited</a>
+            <a href="services.html#ocean" class="nav-dropdown-item">Ocean Link</a>
+            <a href="services.html#land" class="nav-dropdown-item">Land Network</a>
+            <a href="services.html#warehouse" class="nav-dropdown-item">Smart Inventory</a>
+          </div>
+        </div>
+
+        <a href="tracking.html" class="text-slate-600 font-medium hover:text-orange-500 transition-colors">Tracking</a>
+
+        <!-- About Dropdown-Item (Active) -->
+        <div class="nav-item-dropdown">
+          <a href="about.html"
+            class="flex items-center gap-1 text-orange-600 font-extrabold border-b-2 border-orange-600 py-1">
+            About Us <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="#mission" class="nav-dropdown-item">Our Mission</a>
+            <a href="#milestones" class="nav-dropdown-item">Milestones</a>
+            <a href="contact.html" class="nav-dropdown-item">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-4" id="nav-auth"></div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 flex items-center justify-center"
+        aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="material-symbols-outlined text-3xl text-slate-900">menu</span>
+      </button>
+    </nav>
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-slate-50/95 backdrop-blur-xl border-t border-slate-200 px-8 py-6 space-y-4">
+      <a href="../index.html" class="block text-slate-700 font-medium py-2 hover:text-orange-500">Home</a>
+
+      <!-- Mobile Services Dropdown -->
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex justify-between items-center text-slate-700 font-medium py-2 hover:text-orange-500">
+          Services <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="services.html" class="block text-slate-600 text-sm py-1">Overview</a>
+          <a href="services.html#air" class="block text-slate-600 text-sm py-1">Air Expedited</a>
+          <a href="services.html#ocean" class="block text-slate-600 text-sm py-1">Ocean Link</a>
+          <a href="services.html#land" class="block text-slate-600 text-sm py-1">Land Network</a>
+          <a href="services.html#warehouse" class="block text-slate-600 text-sm py-1">Smart Inventory</a>
+        </div>
+      </div>
+
+      <a href="tracking.html" class="block text-slate-700 font-medium py-2 hover:text-orange-500">Tracking</a>
+
+      <!-- Mobile About Dropdown -->
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle w-full flex justify-between items-center text-orange-600 font-bold py-2">
+          About Us <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="about.html" class="block text-slate-600 text-sm py-1">Overview</a>
+          <a href="#mission" class="block text-slate-600 text-sm py-1">Our Mission</a>
+          <a href="#milestones" class="block text-slate-600 text-sm py-1">Milestones</a>
+          <a href="contact.html" class="block text-slate-600 text-sm py-1">Contact Us</a>
+        </div>
+      </div>
+
+      <div id="mobile-nav-auth" class="pt-4 space-y-3 border-t border-slate-200"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="pt-20">
+
+    <!-- Hero -->
+    <section class="relative min-h-[560px] flex items-center overflow-hidden kinetic-gradient text-white">
+      <div class="max-w-7xl mx-auto px-8 w-full grid md:grid-cols-2 gap-12 items-center z-10 py-24">
+        <div class="space-y-6">
+          <span class="inline-block text-secondary-container font-label font-bold uppercase tracking-widest">Global
+            Architect</span>
+          <h1 class="text-5xl md:text-7xl font-headline font-extrabold leading-tight tracking-tighter">Moving the
+            World's <span class="text-secondary-container">Ambition.</span></h1>
+          <p class="text-on-primary-container text-lg max-w-lg leading-relaxed">USPN isn't just a carrier; we are the
+            kinetic foundation for global trade. Since our inception, we've treated every manifest as a blueprint for
+            success.</p>
+        </div>
+        <div class="relative h-[400px] rounded-xl overflow-hidden shadow-2xl">
+          <img class="w-full h-full object-cover grayscale contrast-125 opacity-80"
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&q=80" alt="Logistics terminal" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-60"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="mission" class="py-32 bg-surface">
+      <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-12 gap-16 items-start">
+        <div class="md:col-span-4 md:sticky top-32">
+          <span class="text-secondary font-label font-bold uppercase tracking-widest mb-4 block">Our Origin</span>
+          <h2 class="text-4xl font-headline font-bold text-primary leading-tight">A Legacy of <br />Precision.</h2>
+        </div>
+        <div class="md:col-span-8 space-y-12">
+          <div class="space-y-6">
+            <p class="text-2xl font-light text-on-surface-variant leading-relaxed">Founded in 1998, USPN emerged from a
+              simple observation: the world needed a logistics partner that valued <span
+                class="text-primary font-bold">architectural exactness</span> over brute force volume.</p>
+            <p class="text-lg text-on-surface-variant leading-relaxed">We began as a boutique firm specializing in
+              complex industrial movements. Today, we manage a multi-modal network spanning 140 countries, yet our
+              philosophy remains unchanged.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-8 pt-8">
+            <div class="p-8 bg-surface-container-low rounded-lg space-y-2">
+              <span class="text-4xl font-headline font-black text-primary">140+</span>
+              <p class="text-on-surface-variant font-label">Countries Connected</p>
+            </div>
+            <div class="p-8 bg-surface-container-low rounded-lg space-y-2">
+              <span class="text-4xl font-headline font-black text-primary">2.4M</span>
+              <p class="text-on-surface-variant font-label">Annual Tons Moved</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="milestones" class="py-32 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-4xl font-headline font-bold text-primary mb-4">Milestones of Motion</h2>
+          <div class="w-20 h-1 bg-secondary mx-auto"></div>
+        </div>
+        <div class="relative">
+          <div
+            class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-outline-variant opacity-20 hidden md:block">
+          </div>
+          <div class="space-y-24">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-0 relative">
+              <div class="md:w-1/2 md:pr-24 text-right">
+                <span class="text-5xl font-headline font-black text-outline-variant opacity-30">1998</span>
+                <h3 class="text-xl font-headline font-bold text-primary mt-2">The Groundwork</h3>
+                <p class="text-on-surface-variant mt-2 max-w-sm ml-auto">Founded with a single mission: to redefine
+                  maritime shipping precision.</p>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-secondary hidden md:block">
+              </div>
+              <div class="md:w-1/2 md:pl-24">
+                <img class="w-full h-48 object-cover rounded shadow-lg"
+                  src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=70" alt="1998" />
+              </div>
+            </div>
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-0 relative">
+              <div class="md:w-1/2 md:pl-24">
+                <span class="text-5xl font-headline font-black text-outline-variant opacity-30">2010</span>
+                <h3 class="text-xl font-headline font-bold text-primary mt-2">Global Expansion</h3>
+                <p class="text-on-surface-variant mt-2 max-w-sm">Opened hubs in Singapore and Dubai, establishing our
+                  "Kinetic Triangle" network.</p>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-secondary hidden md:block">
+              </div>
+              <div class="md:w-1/2 md:pr-24">
+                <img class="w-full h-48 object-cover rounded shadow-lg"
+                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&q=70" alt="2010" />
+              </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-0 relative">
+              <div class="md:w-1/2 md:pr-24 text-right">
+                <span class="text-5xl font-headline font-black text-outline-variant opacity-30">2024</span>
+                <h3 class="text-xl font-headline font-bold text-primary mt-2">The Digital Apex</h3>
+                <p class="text-on-surface-variant mt-2 max-w-sm ml-auto">Launch of our AI-driven tracking platform with
+                  real-time carbon-offset routing.</p>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-secondary hidden md:block">
+              </div>
+              <div class="md:w-1/2 md:pl-24">
+                <img class="w-full h-48 object-cover rounded shadow-lg"
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=70" alt="2024" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats CTA -->
+    <section class="py-24 kinetic-gradient text-white">
+      <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-headline font-bold leading-tight mb-8">Unrivaled <br /><span
+              class="text-secondary-container">Global Reach.</span></h2>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-secondary-container">hub</span>
+              <div>
+                <h4 class="font-bold">12 Strategic Hubs</h4>
+                <p class="text-on-primary-container text-sm">Positioned at the world's most critical trade
+                  intersections.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-secondary-container">public</span>
+              <div>
+                <h4 class="font-bold">Seamless Integration</h4>
+                <p class="text-on-primary-container text-sm">End-to-end visibility from origin to final delivery.</p>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html"
+            class="mt-10 inline-block bg-secondary text-white px-8 py-4 rounded-lg font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all">Get
+            in Touch</a>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white/5 rounded-2xl p-8 text-center">
+            <p class="text-4xl font-headline font-extrabold text-secondary-container">99.8%</p>
+            <p class="text-on-primary-container text-xs uppercase tracking-widest mt-2">On-Time Rate</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-8 text-center">
+            <p class="text-4xl font-headline font-extrabold text-secondary-container">142+</p>
+            <p class="text-on-primary-container text-xs uppercase tracking-widest mt-2">Countries</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-8 text-center">
+            <p class="text-4xl font-headline font-extrabold text-secondary-container">12M</p>
+            <p class="text-on-primary-container text-xs uppercase tracking-widest mt-2">Tons / Year</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-8 text-center">
+            <p class="text-4xl font-headline font-extrabold text-secondary-container">2,500+</p>
+            <p class="text-on-primary-container text-xs uppercase tracking-widest mt-2">Specialists</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="w-full py-12 bg-slate-950 border-t border-slate-800/50">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-orange-500">local_shipping</span>
+            <span class="text-white font-bold font-headline uppercase tracking-widest">USPN</span>
+          </div>
+          <p class="text-slate-400 text-sm max-w-xs leading-relaxed">Pioneering high-precision global logistics and
+            supply chain architecture for industry leaders worldwide.</p>
+        </div>
+        <div class="flex flex-wrap gap-12">
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Navigation</h4>
+            <ul class="space-y-2">
+              <li><a href="../index.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Home</a>
+              </li>
+              <li><a href="services.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Services</a></li>
+              <li><a href="tracking.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Tracking</a></li>
+              <li><a href="contact.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Contact
+                  Us</a></li>
+            </ul>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">About Us</a>
+              </li>
+              <li><a href="quote.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Get a
+                  Quote</a></li>
+              <li><a href="#" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-400">&copy; 2024 USPN. All rights reserved.</p>
+        <div class="flex gap-8 text-xs text-slate-600 font-label uppercase tracking-widest">
+          <span>London</span><span>Shanghai</span><span>New York</span><span>Singapore</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

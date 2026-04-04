@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Manage Shipments | USPN Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.ambient-shadow{box-shadow:0px 12px 32px rgba(25,28,29,0.04)}
+@media(min-width:768px){body{min-height:max(884px,100dvh)}}
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<a href="#admin-main" class="skip-link">Skip to main content</a>
+
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5 h-20">
+  <div class="flex justify-between items-center max-w-full px-6 h-full">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-orange-600 text-2xl">local_shipping</span>
+      <span class="text-xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Admin</span>
+    </div>
+    <button onclick="logout()" class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-all">Logout</button>
+  </div>
+</header>
+
+<div class="flex min-h-screen pt-20">
+  <aside class="hidden lg:flex flex-col w-64 fixed left-0 top-20 bottom-0 bg-slate-950 border-r border-slate-800/50 py-8 z-40">
+    <nav class="flex-1 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">dashboard</span><span class="text-sm font-semibold font-headline">Dashboard</span>
+      </a>
+      <a href="shipments.html" class="flex items-center gap-4 bg-orange-600/10 text-orange-500 border-r-4 border-orange-600 px-6 py-4 transition-all">
+        <span class="material-symbols-outlined">inventory_2</span><span class="text-sm font-semibold font-headline">Shipments</span>
+      </a>
+      <a href="users.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">group</span><span class="text-sm font-semibold font-headline">Users</span>
+      </a>
+      <a href="../../index.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">public</span><span class="text-sm font-semibold font-headline">View Site</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main id="admin-main" class="hidden flex-1 lg:ml-64 px-4 py-8 md:px-8 pb-24 lg:pb-8">
+    <div class="max-w-6xl mx-auto">
+      <header class="mb-8">
+        <span class="text-secondary font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Cargo Management</span>
+        <h1 class="text-4xl font-extrabold text-primary tracking-tight font-headline">All Shipments</h1>
+      </header>
+
+      <!-- Search & Filter -->
+      <div class="flex flex-col md:flex-row gap-4 mb-8">
+        <div class="flex-1 flex items-center gap-3 bg-surface-container-lowest rounded-xl px-4 py-3 ambient-shadow border border-outline-variant/15">
+          <span class="material-symbols-outlined text-outline">search</span>
+          <input id="search-input" type="text" placeholder="Search by tracking number or route..."
+            class="bg-transparent border-none focus:ring-0 w-full font-body text-on-surface placeholder:text-outline"/>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="setFilter('all')" id="filter-all" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-primary text-white transition-all">All</button>
+          <button onclick="setFilter('Pending')" id="filter-Pending" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Pending</button>
+          <button onclick="setFilter('In Transit')" id="filter-In Transit" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">In Transit</button>
+          <button onclick="setFilter('Delayed')" id="filter-Delayed" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Delayed</button>
+          <button onclick="setFilter('Delivered')" id="filter-Delivered" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Delivered</button>
+        </div>
+      </div>
+
+      <div id="shipments-table" class="space-y-3"></div>
+      <p id="no-results" class="hidden text-center py-12 text-on-surface-variant">No shipments match your search.</p>
+    </div>
+  </main>
+</div>
+
+<nav class="lg:hidden fixed bottom-0 w-full bg-slate-950 text-slate-300 flex justify-around items-center h-20 z-50 border-t border-slate-800/50 safe-bottom-nav">
+  <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500"><span class="material-symbols-outlined">dashboard</span><span class="text-[10px] font-bold uppercase">Dashboard</span></a>
+  <a href="shipments.html" class="flex flex-col items-center gap-1 text-orange-500"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">inventory_2</span><span class="text-[10px] font-bold uppercase">Shipments</span></a>
+  <a href="users.html" class="flex flex-col items-center gap-1 text-slate-500"><span class="material-symbols-outlined">group</span><span class="text-[10px] font-bold uppercase">Users</span></a>
+  <a href="../../index.html" class="flex flex-col items-center gap-1 text-slate-500"><span class="material-symbols-outlined">public</span><span class="text-[10px] font-bold uppercase">Site</span></a>
+</nav>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/pages/admin/shipments.js"></script>
+</body>
+</html>

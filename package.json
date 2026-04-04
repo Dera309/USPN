@@ -1,0 +1,36 @@
+{
+  "name": "uspn",
+  "version": "1.0.0",
+  "description": "USPN Global Cargo Logistics Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run tw && concurrently \"npm run server\" \"npm run client\"",
+    "client": "vite",
+    "pre-server": "powershell -Command \"Get-NetTCPConnection -LocalPort 5005 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } ; exit 0\"",
+    "server": "npm run pre-server && nodemon server/index.js",
+    "tw": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
+    "tw:watch": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
+    "build": "npm run tw && vite build",
+    "preview": "vite preview",
+    "seed": "node server/seed.js",
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "autoprefixer": "^10.4.27",
+    "concurrently": "^9.0.0",
+    "nodemon": "^3.0.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19",
+    "vite": "^8.0.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.0"
+  }
+}

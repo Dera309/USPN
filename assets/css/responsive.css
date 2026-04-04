@@ -1,0 +1,204 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   USPN — Responsive System
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Base reset ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  body {
+    min-height: 100dvh !important;
+  }
+}
+
+/* ── iPhone safe areas ────────────────────────────────────────────────────── */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  header nav,
+  header>div {
+    height: calc(5rem + env(safe-area-inset-top));
+    align-items: flex-end;
+    padding-bottom: 0.75rem;
+  }
+
+  .pt-20 {
+    padding-top: calc(5rem + env(safe-area-inset-top)) !important;
+  }
+
+  .pt-28 {
+    padding-top: calc(7rem + env(safe-area-inset-top)) !important;
+  }
+
+  .pt-32 {
+    padding-top: calc(8rem + env(safe-area-inset-top)) !important;
+  }
+
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ── Skip link ────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: #fe6b00;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── Focus ring ───────────────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #fe6b00;
+  outline-offset: 2px;
+}
+
+/* ── Mobile menu animation ────────────────────────────────────────────────── */
+/* Scoped to mobile only — on desktop md:hidden handles visibility */
+@media (max-width: 767px) {
+  #mobile-menu {
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    /* overflow must be hidden during animation, then visible when open */
+    overflow: hidden;
+  }
+
+  #mobile-menu.hidden {
+    max-height: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+    display: block !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden;
+  }
+
+  #mobile-menu:not(.hidden) {
+    /* Large enough to fit all content including expanded sub-dropdowns */
+    max-height: 1200px !important;
+    opacity: 1;
+    pointer-events: auto;
+    overflow: hidden;
+  }
+
+  #mobile-menu-btn {
+    padding: 0.5rem !important;
+  }
+
+
+  #mobile-menu a {
+    padding: 0.625rem 0 !important;
+    font-size: 0.9375rem !important;
+  }
+}
+
+/* ── Prevent iOS input zoom ───────────────────────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="search"],
+select,
+textarea {
+  font-size: 16px;
+}
+
+/* ── Touch targets ────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+
+  button,
+  a[href],
+  [role="button"] {
+    min-height: 44px;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+/* ── Admin layout ─────────────────────────────────────────────────────────── */
+.safe-bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  height: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+@media (max-width: 1023px) {
+  .lg\:ml-64 {
+    margin-left: 0 !important;
+  }
+
+  /* Only admin main gets bottom padding for the bottom nav */
+  main#admin-main {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+
+/* ── Mobile dropdown toggles ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-dropdown-toggle.active + .mobile-dropdown-content {
+    max-height: 500px;
+  }
+
+  .mobile-dropdown-toggle.active .chevron {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-dropdown-toggle .chevron {
+    transition: transform 0.3s ease;
+  }
+}

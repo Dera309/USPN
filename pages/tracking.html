@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Track Your Shipment | USPN</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/pages/tracking.js"></script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .kinetic-gradient {
+      background: linear-gradient(135deg, #000000 0%, #0D1C32 100%)
+    }
+
+    .ambient-shadow {
+      box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04)
+    }
+
+    @media(min-width:768px) {
+      body {
+        min-height: max(884px, 100dvh)
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="fixed top-0 w-full z-[1000] bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5">
+    <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+      <a href="../index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-orange-600 text-3xl">local_shipping</span>
+        <span class="text-2xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../index.html" class="text-slate-600 font-medium hover:text-orange-500 transition-colors">Home</a>
+
+        <!-- Services Dropdown-Item -->
+        <div class="nav-item-dropdown">
+          <a href="services.html" class="text-slate-600 font-medium hover:text-orange-500 transition-colors">
+            Services <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="services.html#air" class="nav-dropdown-item">Air Expedited</a>
+            <a href="services.html#ocean" class="nav-dropdown-item">Ocean Link</a>
+            <a href="services.html#land" class="nav-dropdown-item">Land Network</a>
+            <a href="services.html#warehouse" class="nav-dropdown-item">Smart Inventory</a>
+          </div>
+        </div>
+
+        <a href="tracking.html" class="text-orange-600 font-extrabold border-b-2 border-orange-600 py-1">Tracking</a>
+
+        <!-- About Dropdown-Item -->
+        <div class="nav-item-dropdown">
+          <a href="about.html" class="text-slate-600 font-medium hover:text-orange-500 transition-colors">
+            About Us <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="about.html#mission" class="nav-dropdown-item">Our Mission</a>
+            <a href="about.html#milestones" class="nav-dropdown-item">Milestones</a>
+            <a href="contact.html" class="nav-dropdown-item">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-4" id="nav-auth"></div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 flex items-center justify-center"
+        aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="material-symbols-outlined text-3xl text-slate-900">menu</span>
+      </button>
+    </nav>
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-slate-50/95 backdrop-blur-xl border-t border-slate-200 px-8 py-6 space-y-4">
+      <a href="../index.html" class="block text-slate-700 font-medium py-2 hover:text-orange-500">Home</a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex justify-between items-center text-slate-700 font-medium py-2 hover:text-orange-500">
+          Services <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="services.html" class="block text-slate-600 text-sm py-1">Overview</a>
+          <a href="services.html#air" class="block text-slate-600 text-sm py-1">Air Expedited</a>
+          <a href="services.html#ocean" class="block text-slate-600 text-sm py-1">Ocean Link</a>
+          <a href="services.html#land" class="block text-slate-600 text-sm py-1">Land Network</a>
+          <a href="services.html#warehouse" class="block text-slate-600 text-sm py-1">Smart Inventory</a>
+        </div>
+      </div>
+
+      <a href="tracking.html" class="block text-orange-600 font-bold py-2">Tracking</a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex justify-between items-center text-slate-700 font-medium py-2 hover:text-orange-500">
+          About Us <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="about.html" class="block text-slate-600 text-sm py-1">Overview</a>
+          <a href="about.html#mission" class="block text-slate-600 text-sm py-1">Our Mission</a>
+          <a href="contact.html" class="block text-slate-600 text-sm py-1">Contact Us</a>
+        </div>
+      </div>
+
+      <div id="mobile-nav-auth" class="pt-4 space-y-3 border-t border-slate-200"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="pt-28 md:pt-32 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <!-- Hero Search -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12 md:mb-24">
+      <div class="lg:col-span-7">
+        <p class="font-label text-secondary font-bold uppercase tracking-widest text-sm mb-4">Precision Intelligence</p>
+        <h1
+          class="font-headline text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary tracking-tight leading-none mb-6 md:mb-8">
+          Where is your <br /><span class="text-secondary-container">Cargo</span> right now?
+        </h1>
+        <form id="track-form" class="relative max-w-2xl">
+          <div
+            class="bg-surface-container-low rounded-xl p-2 flex items-center group transition-all focus-within:ring-2 focus-within:ring-secondary/20 ambient-shadow">
+            <span class="material-symbols-outlined ml-2 sm:ml-4 text-outline flex-shrink-0">search</span>
+            <input id="track-input" type="text" placeholder="e.g. USPN-9928-EL"
+              class="w-full bg-transparent border-none focus:ring-0 font-body text-base sm:text-lg py-3 sm:py-4 px-2 sm:px-4 placeholder:text-outline min-w-0" />
+            <button type="submit"
+              class="bg-primary text-white px-4 sm:px-8 py-3 sm:py-4 rounded-lg font-bold hover:bg-secondary transition-colors whitespace-nowrap flex-shrink-0 text-sm sm:text-base">Locate</button>
+          </div>
+          <p class="mt-4 text-on-surface-variant text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">info</span>
+            Format: USPN-XXXX-XX
+          </p>
+        </form>
+      </div>
+      <div class="lg:col-span-5 flex flex-col justify-end">
+        <div class="kinetic-gradient rounded-3xl p-8 text-white ambient-shadow relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-10 rounded-full -mr-16 -mt-16"></div>
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="bg-white/10 p-2 rounded-lg"><span class="material-symbols-outlined">speed</span></span>
+              <span class="font-label uppercase tracking-widest text-xs font-bold text-white/60">Live Analytics</span>
+            </div>
+            <p class="text-3xl font-headline font-bold mb-2">99.4%</p>
+            <p class="text-white/70 text-sm leading-relaxed">Average on-time delivery across our kinetic routes this
+              month.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="not-found" class="hidden text-center py-20">
+      <span class="material-symbols-outlined text-6xl text-outline mb-4 block">search_off</span>
+      <h2 class="font-headline text-2xl font-bold text-primary mb-2">Shipment Not Found</h2>
+      <p class="text-on-surface-variant">No shipment found for tracking number <strong id="not-found-num"></strong>.
+        Please check the number and try again.</p>
+    </div>
+
+    <div id="tracking-results" class="grid grid-cols-1 lg:grid-cols-3 gap-8" style="display:none">
+      <div class="lg:col-span-2 space-y-8">
+        <section
+          class="bg-surface-container-lowest rounded-2xl p-4 sm:p-8 ambient-shadow border border-outline-variant/15">
+          <div class="flex justify-between items-start mb-6 sm:mb-12 flex-wrap gap-3">
+            <div>
+              <h2 id="res-tracking-num" class="font-headline text-2xl font-bold text-primary"></h2>
+              <p id="res-route" class="text-on-surface-variant font-body"></p>
+            </div>
+            <div id="res-status-chip"></div>
+          </div>
+          <div class="relative px-4">
+            <div class="absolute top-5 left-8 right-8 h-0.5 bg-outline-variant/30 hidden sm:block"></div>
+            <div id="progress-bar"
+              class="absolute top-5 left-8 h-0.5 bg-secondary-container transition-all duration-500 hidden sm:block">
+            </div>
+            <div class="relative sm:flex justify-between hidden" id="timeline-steps"></div>
+            <div class="flex flex-col gap-0 sm:hidden" id="timeline-steps-mobile"></div>
+          </div>
+        </section>
+        <section class="bg-surface-container-low rounded-2xl p-4 sm:p-8 border border-outline-variant/15">
+          <h3 class="font-headline text-lg sm:text-xl font-bold mb-4 sm:mb-8">Activity Log</h3>
+          <div id="activity-log" class="space-y-0"></div>
+        </section>
+      </div>
+      <div class="space-y-8">
+        <div class="bg-surface-container-high rounded-2xl overflow-hidden ambient-shadow h-64 relative">
+          <img id="map-img" class="w-full h-full object-cover" src="" alt="Shipment location map" />
+          <div class="absolute inset-0 bg-primary/10"></div>
+          <div id="map-label" class="absolute inset-0 flex items-center justify-center">
+            <div class="bg-white/90 backdrop-blur px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              <span id="map-location-text" class="font-bold text-xs uppercase text-primary"></span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-6 ambient-shadow border border-outline-variant/15">
+          <h3 class="font-label text-xs font-bold uppercase tracking-widest text-secondary mb-6">Package Manifest</h3>
+          <div id="manifest-details" class="space-y-4"></div>
+          <p id="res-eta" class="mt-4 text-sm text-on-surface-variant"></p>
+        </div>
+        <div class="bg-primary-container text-white rounded-2xl p-6 relative overflow-hidden">
+          <div class="relative z-10">
+            <h4 class="font-headline font-bold text-lg mb-2">Need assistance?</h4>
+            <p class="text-white/60 text-sm mb-6">Our logistics architects are available 24/7 for complex routing
+              queries.</p>
+            <a href="contact.html" class="text-secondary-container font-bold text-sm flex items-center gap-2">
+              Contact Support <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-white/5 text-8xl">support_agent</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="w-full py-12 bg-slate-950 border-t border-slate-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-orange-500">local_shipping</span>
+            <span class="text-white font-bold font-headline uppercase tracking-widest">USPN</span>
+          </div>
+          <p class="text-slate-400 text-sm max-w-xs leading-relaxed">Pioneering high-precision global logistics and
+            supply chain architecture for industry leaders worldwide.</p>
+        </div>
+        <div class="flex flex-wrap gap-12">
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Navigation</h4>
+            <ul class="space-y-2">
+              <li><a href="../index.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Home</a>
+              </li>
+              <li><a href="services.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Services</a></li>
+              <li><a href="tracking.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Tracking</a></li>
+              <li><a href="contact.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Contact
+                  Us</a></li>
+            </ul>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">About Us</a>
+              </li>
+              <li><a href="quote.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Get a
+                  Quote</a></li>
+              <li><a href="#" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-400">&copy; 2024 USPN. All rights reserved.</p>
+        <div class="flex gap-8 text-xs text-slate-600 font-label uppercase tracking-widest">
+          <span>London</span><span>Shanghai</span><span>New York</span><span>Singapore</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

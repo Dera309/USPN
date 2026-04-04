@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>USPN | Create Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script type="module" src="/src/pages/register.js"></script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.bg-login-hero{background-image:linear-gradient(135deg,rgba(0,0,0,0.95) 0%,rgba(13,28,50,0.85) 100%),url(https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80);background-size:cover;background-position:center}
+@media(min-width:768px){body{min-height:max(884px,100dvh)}}
+</style>
+</head>
+<body class="bg-slate-950 font-body text-on-surface antialiased">
+
+<div class="flex min-h-screen">
+  <!-- Left: Editorial Panel -->
+  <div class="relative hidden lg:flex lg:w-2/5 bg-login-hero flex-col justify-between p-16">
+    <div class="z-10">
+      <a href="../index.html" class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-secondary-container text-4xl">local_shipping</span>
+        <span class="font-headline text-2xl font-black uppercase tracking-widest text-white">USPN</span>
+      </a>
+    </div>
+    <div class="z-10 max-w-sm">
+      <span class="font-label text-sm uppercase tracking-[0.3em] text-secondary-container font-bold mb-4 block">Join the Network</span>
+      <h1 class="font-headline text-5xl font-extrabold text-white tracking-tighter leading-tight">Start Moving<br/><span class="text-secondary-container">Smarter.</span></h1>
+      <p class="mt-6 text-slate-400 leading-relaxed font-light">Create your USPN account and gain access to real-time tracking, booking management, and global logistics intelligence.</p>
+    </div>
+    <div class="z-10"><p class="text-slate-600 text-xs uppercase tracking-widest">© 2024 USPN</p></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+  </div>
+
+  <!-- Right: Register Form -->
+  <div class="w-full lg:w-3/5 bg-slate-950 flex flex-col justify-center px-8 sm:px-16 md:px-24 py-12 relative overflow-y-auto">
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-[100px]"></div>
+    <div class="w-full max-w-lg mx-auto z-10">
+      <div class="mb-10">
+        <div class="lg:hidden flex items-center gap-2 mb-8">
+          <span class="material-symbols-outlined text-secondary-container text-2xl">local_shipping</span>
+          <span class="font-headline text-lg font-black uppercase tracking-widest text-white">USPN</span>
+        </div>
+        <h2 class="font-headline text-4xl font-extrabold text-white tracking-tight mb-2">Create Account</h2>
+        <p class="text-slate-500 font-medium">Fill in your details to get started.</p>
+      </div>
+
+      <div id="error-banner" class="hidden mb-6 bg-error-container text-on-error-container px-4 py-3 rounded-lg text-sm font-medium"></div>
+
+      <form id="register-form" class="space-y-5" novalidate>
+        <div class="space-y-2">
+          <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold">Full Name</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">person</span>
+            </div>
+            <input id="name" type="text" required placeholder="John Doe"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="name-err" class="hidden text-xs text-red-400"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold">Email Address</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">alternate_email</span>
+            </div>
+            <input id="email" type="email" required placeholder="name@company.com"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="email-err" class="hidden text-xs text-red-400"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold">Password</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">lock</span>
+            </div>
+            <input id="password" type="password" required placeholder="Min. 8 characters"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="password-err" class="hidden text-xs text-red-400"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label text-xs uppercase tracking-widest text-slate-400 font-semibold">Confirm Password</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-600 text-xl group-focus-within:text-secondary-container transition-colors">lock_reset</span>
+            </div>
+            <input id="confirm-password" type="password" required placeholder="Repeat password"
+              class="w-full bg-slate-900/50 border-0 focus:ring-1 focus:ring-secondary/50 rounded-lg py-4 pl-12 pr-4 text-white placeholder-slate-700 font-body transition-all"/>
+          </div>
+          <p id="confirm-err" class="hidden text-xs text-red-400"></p>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-secondary-container text-on-secondary-container font-headline font-extrabold py-5 rounded-lg shadow-2xl hover:bg-secondary hover:text-white hover:scale-[1.01] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+            Create My Account
+            <span class="material-symbols-outlined text-xl">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-8 text-center">
+        <p class="text-slate-500 text-sm">Already have an account? <a href="login.html" class="text-secondary-container font-semibold hover:text-secondary transition-colors">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+

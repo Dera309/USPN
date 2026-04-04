@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Your Shipment | USPN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#0d1c32",
+              "on-surface-variant": "#44474d",
+              "surface-dim": "#d9dadb",
+              "on-primary-fixed-variant": "#39475f",
+              "secondary-container": "#fe6b00",
+              "on-error": "#ffffff",
+              "surface-container-low": "#f3f4f5",
+              "inverse-surface": "#2e3132",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-on-surface": "#f0f1f2",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "on-secondary-fixed": "#351000",
+              "error": "#ba1a1a",
+              "tertiary-container": "#0c1c32",
+              "inverse-primary": "#b9c7e4",
+              "primary-fixed-dim": "#b9c7e4",
+              "on-tertiary-container": "#7684a0",
+              "tertiary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#0d1c32",
+              "surface-container-high": "#e7e8e9",
+              "primary-fixed": "#d6e3ff",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#7a3000",
+              "surface-tint": "#515f78",
+              "on-tertiary-fixed": "#0c1c32",
+              "tertiary-fixed": "#d5e3ff",
+              "primary": "#000000",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#a04100",
+              "surface-container": "#edeeef",
+              "secondary-fixed-dim": "#ffb693",
+              "on-tertiary-fixed-variant": "#394760",
+              "surface": "#f8f9fa",
+              "background": "#f8f9fa",
+              "outline-variant": "#c5c6cd",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1d",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "tertiary-fixed-dim": "#b8c7e5",
+              "on-primary-container": "#76849f",
+              "outline": "#75777e",
+              "secondary-fixed": "#ffdbcc",
+              "on-secondary-container": "#572000"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #000000 0%, #0D1C32 100%);
+        }
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-slate-50/70 backdrop-blur-xl fixed top-0 w-full z-50 shadow-xl shadow-slate-900/5">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-orange-600 text-3xl" data-icon="local_shipping">local_shipping</span>
+<span class="text-2xl font-black uppercase tracking-widest text-slate-950">USPN</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Home</a>
+<a class="text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Services</a>
+<a class="text-orange-600 font-extrabold border-b-2 border-orange-600 transition-colors duration-300" href="#">Tracking</a>
+<a class="text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300" href="#">Contact Us</a>
+</nav>
+<button class="bg-orange-600 text-white px-6 py-2.5 rounded font-bold tracking-tight scale-95 active:opacity-80 transition-all">Track Shipment</button>
+</div>
+</header>
+<main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+<!-- Hero Section Asymmetry -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+<div class="lg:col-span-7">
+<p class="font-label text-secondary font-bold uppercase tracking-widest text-sm mb-4">Precision Intelligence</p>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-primary tracking-tight leading-none mb-8">
+                    Where is your <br/><span class="text-secondary-container">Cargo</span> right now?
+                </h1>
+<!-- Search Component -->
+<div class="relative max-w-2xl">
+<div class="bg-surface-container-low rounded-xl p-2 flex items-center group transition-all focus-within:ring-2 focus-within:ring-secondary/20 ambient-shadow">
+<span class="material-symbols-outlined ml-4 text-outline" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 font-body text-lg py-4 px-4 placeholder:text-outline" placeholder="Enter Tracking Number (e.g. EL-99283-04)" type="text"/>
+<button class="bg-primary text-white px-8 py-4 rounded-lg font-bold hover:bg-secondary transition-colors">
+                            Locate
+                        </button>
+</div>
+<p class="mt-4 text-on-surface-variant text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                        Supported formats: EL-Standard, Global-Expedited, Rail-Direct.
+                    </p>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col justify-end">
+<div class="kinetic-gradient rounded-3xl p-8 text-white ambient-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-10 rounded-full -mr-16 -mt-16"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<span class="bg-white/10 p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+</span>
+<span class="font-label uppercase tracking-widest text-xs font-bold text-white/60">Live Analytics</span>
+</div>
+<p class="text-3xl font-headline font-bold mb-2">99.4%</p>
+<p class="text-white/70 text-sm leading-relaxed">Average on-time delivery across our architected kinetic routes this month.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tracking Content: Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left: Shipment Details -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Visual Timeline -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 ambient-shadow border border-outline-variant/15">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h2 class="font-headline text-2xl font-bold text-primary">Shipment #EL-99283-04</h2>
+<p class="text-on-surface-variant font-body">In Transit from Hamburg, DE to Tokyo, JP</p>
+</div>
+<div class="bg-secondary-container/10 text-on-secondary-container px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+                            In Transit
+                        </div>
+</div>
+<!-- Visual Progress Line -->
+<div class="relative px-4">
+<div class="absolute top-5 left-8 right-8 h-0.5 bg-outline-variant/30"></div>
+<div class="absolute top-5 left-8 w-2/3 h-0.5 bg-secondary-container"></div>
+<div class="relative flex justify-between">
+<!-- Step 1: Ordered -->
+<div class="flex flex-col items-center gap-4 text-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-xl" data-icon="check" data-weight="fill">check</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">Ordered</p>
+<p class="text-xs text-on-surface-variant">Oct 12, 09:42</p>
+</div>
+</div>
+<!-- Step 2: Picked Up -->
+<div class="flex flex-col items-center gap-4 text-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-xl" data-icon="check" data-weight="fill">check</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">Picked Up</p>
+<p class="text-xs text-on-surface-variant">Oct 13, 14:15</p>
+</div>
+</div>
+<!-- Step 3: In Transit -->
+<div class="flex flex-col items-center gap-4 text-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-white flex items-center justify-center z-10 ring-8 ring-secondary-container/10">
+<span class="material-symbols-outlined text-xl" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">In Transit</p>
+<p class="text-xs text-on-surface-variant">Arriving Oct 18</p>
+</div>
+</div>
+<!-- Step 4: Delivered -->
+<div class="flex flex-col items-center gap-4 text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-outline flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<p class="font-bold text-on-surface-variant text-sm">Delivered</p>
+<p class="text-xs text-outline">Pending</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Event Log -->
+<section class="bg-surface-container-low rounded-2xl p-8 border border-outline-variant/15">
+<h3 class="font-headline text-xl font-bold mb-8">Activity Log</h3>
+<div class="space-y-0">
+<!-- Log Item 1 -->
+<div class="flex gap-8 group pb-8">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-secondary ring-4 ring-secondary/20"></div>
+<div class="w-px h-full bg-outline-variant/30 mt-4 group-last:hidden"></div>
+</div>
+<div class="flex-1 -mt-1 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-primary">Arrived at Sort Facility</h4>
+<span class="text-sm font-medium text-on-surface-variant font-body">Oct 15, 2023 — 03:12 AM</span>
+</div>
+<p class="text-on-surface-variant text-sm">Main Hub — Dubai Central Logistics Park, UAE</p>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="flex gap-8 group pb-8">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-px h-full bg-outline-variant/30 mt-4 group-last:hidden"></div>
+</div>
+<div class="flex-1 -mt-1 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-primary">Departed Port of Departure</h4>
+<span class="text-sm font-medium text-on-surface-variant font-body">Oct 13, 2023 — 11:45 PM</span>
+</div>
+<p class="text-on-surface-variant text-sm">Hamburg Container Terminal, Germany</p>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="flex gap-8 group pb-8">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-px h-full bg-outline-variant/30 mt-4 group-last:hidden"></div>
+</div>
+<div class="flex-1 -mt-1 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-primary">Shipment Picked Up</h4>
+<span class="text-sm font-medium text-on-surface-variant font-body">Oct 13, 2023 — 02:15 PM</span>
+</div>
+<p class="text-on-surface-variant text-sm">Merchant Warehouse, Berlin District</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right: Interactive Contextual Map & Specs -->
+<div class="space-y-8">
+<!-- Mini Map -->
+<div class="bg-surface-container-high rounded-2xl overflow-hidden ambient-shadow h-64 relative group">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="minimal dark mode world map with orange glowing navigation paths and dots connecting major logistics hubs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRgJBsqRibnucB_T_ecHDejeauhcCGLGIVABWkn1t3nO6RxHLP5I6yoo-tbHt7_PjpCGWL6fnplyhvW5ssQ68776mL2oglKMrGLEA5TbkJtXRZ0os0QGUZXGxtGDrORsJ5A2ti3fUE2A_QSP7LrPvzIfsWc6yGx4o5AWewA_Sq17wGE-t8Ri_1WvnOXyNMqP45xShxADr83dRK-N9DfnTaG3Ba-5SQbkA61BgcCIbLYOd66qVbqu1NheA-wbzzHDSMkz0N489d91M"/>
+<div class="absolute inset-0 bg-primary/20"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/90 backdrop-blur px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-bold text-xs uppercase text-primary">Dubai Transit Hub</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4">
+<button class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded uppercase tracking-tighter">Expand Map</button>
+</div>
+</div>
+<!-- Shipment Manifest -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 ambient-shadow border border-outline-variant/15">
+<h3 class="font-label text-xs font-bold uppercase tracking-widest text-secondary mb-6">Package Manifest</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-4">
+<span class="text-on-surface-variant text-sm font-medium">Weight</span>
+<span class="text-primary font-bold">1,240 kg</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-4">
+<span class="text-on-surface-variant text-sm font-medium">Dimensions</span>
+<span class="text-primary font-bold">120 x 80 x 100 cm</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-4">
+<span class="text-on-surface-variant text-sm font-medium">Service Type</span>
+<span class="text-primary font-bold">Air-Sea Hybrid</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm font-medium">Fragile Item</span>
+<span class="bg-orange-100 text-orange-800 text-[10px] font-black px-2 py-0.5 rounded uppercase">Yes</span>
+</div>
+</div>
+<button class="w-full mt-8 border border-primary/20 text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-white transition-all">Download Manifest PDF</button>
+</div>
+<!-- Support Card -->
+<div class="bg-primary-container text-white rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-lg mb-2">Need assistance?</h4>
+<p class="text-white/60 text-sm mb-6">Our logistics architects are available 24/7 for complex routing queries.</p>
+<a class="text-secondary font-bold text-sm flex items-center gap-2" href="#">
+                            Open Concierge Chat
+                            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-white/5 text-8xl" data-icon="support_agent">support_agent</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 dark:bg-black w-full py-12 mt-auto border-t border-slate-800/50">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
+<div class="md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-orange-500 text-xl" data-icon="local_shipping">local_shipping</span>
+<span class="text-lg font-bold text-white uppercase tracking-wider">USPN</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed mb-6">Redefining global movement through kinetic architecture and precision data intelligence.</p>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Services</h4>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-orange-400 transition-all" href="#">Global Freight</a></li>
+<li><a class="hover:text-orange-400 transition-all" href="#">Warehousing</a></li>
+<li><a class="hover:text-orange-400 transition-all" href="#">Supply Chain Design</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Company</h4>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-orange-400 transition-all" href="#">About Us</a></li>
+<li><a class="hover:text-orange-400 transition-all" href="#">Careers</a></li>
+<li><a class="hover:text-orange-400 transition-all" href="#">Press Office</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Legal</h4>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-orange-400 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-orange-400 transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-400 text-sm">© 2024 USPN. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-xl" data-icon="public">public</span></a>
+<a class="text-slate-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-xl" data-icon="mail">mail</span></a>
+<a class="text-slate-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-xl" data-icon="hub">hub</span></a>
+</div>
+</div>
+</footer>
+</body></html>

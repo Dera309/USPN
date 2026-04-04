@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Admin Dashboard | USPN</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.ambient-shadow{box-shadow:0px 12px 32px rgba(25,28,29,0.04)}
+@media(min-width:768px){body{min-height:max(884px,100dvh)}}
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<a href="#admin-main" class="skip-link">Skip to main content</a>
+
+<!-- Top Bar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5 h-20">
+  <div class="flex justify-between items-center max-w-full px-6 h-full">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-orange-600 text-2xl">local_shipping</span>
+      <span class="text-xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Admin</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span id="admin-name" class="text-sm text-on-surface-variant hidden md:block"></span>
+      <button onclick="logout()" class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-all">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="flex min-h-screen pt-20">
+
+  <!-- Side Nav -->
+  <aside class="hidden lg:flex flex-col w-64 fixed left-0 top-20 bottom-0 bg-slate-950 border-r border-slate-800/50 py-8 z-40 overflow-y-auto">
+    <nav class="flex-1 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-4 bg-orange-600/10 text-orange-500 border-r-4 border-orange-600 px-6 py-4 transition-all">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="text-sm font-semibold tracking-wide font-headline">Dashboard</span>
+      </a>
+      <a href="shipments.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span class="text-sm font-semibold tracking-wide font-headline">Shipments</span>
+      </a>
+      <a href="users.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">group</span>
+        <span class="text-sm font-semibold tracking-wide font-headline">Users</span>
+      </a>
+      <a href="../../index.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all">
+        <span class="material-symbols-outlined">public</span>
+        <span class="text-sm font-semibold tracking-wide font-headline">View Site</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="admin-main" class="hidden flex-1 lg:ml-64 px-4 py-8 md:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <header class="mb-10">
+        <span class="text-secondary font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Executive Dashboard</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primary tracking-tight font-headline">Global Overview</h1>
+      </header>
+
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-surface-container-lowest p-8 rounded-xl shadow-lg shadow-on-surface/5 border border-outline-variant/15 flex flex-col justify-between h-48">
+          <div><span class="material-symbols-outlined text-secondary">inventory_2</span><h3 class="text-on-surface-variant text-sm font-medium mt-2">Total Shipments</h3></div>
+          <p id="metric-total" class="text-4xl font-extrabold text-primary font-headline italic opacity-50 tracking-tighter">--</p>
+        </div>
+        <div class="bg-primary-container p-8 rounded-xl shadow-xl shadow-primary/20 flex flex-col justify-between h-48">
+          <div><span class="material-symbols-outlined text-secondary-container">local_shipping</span><h3 class="text-on-primary-container text-sm font-medium mt-2">Active Shipments</h3></div>
+          <p id="metric-active" class="text-4xl font-extrabold text-white font-headline italic opacity-50 tracking-tighter">--</p>
+        </div>
+        <div class="bg-surface-container-lowest p-8 rounded-xl shadow-lg shadow-on-surface/5 border border-outline-variant/15 flex flex-col justify-between h-48">
+          <div><span class="material-symbols-outlined text-secondary">group</span><h3 class="text-on-surface-variant text-sm font-medium mt-2">Registered Users</h3></div>
+          <p id="metric-users" class="text-4xl font-extrabold text-primary font-headline italic opacity-50 tracking-tighter">--</p>
+        </div>
+      </div>
+
+      <!-- Regional Map -->
+      <section class="mb-12">
+        <div class="bg-surface-container-low rounded-xl p-6 overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-primary font-headline">Regional Performance</h2>
+            <a href="shipments.html" class="text-secondary font-bold text-sm hover:underline">View All Shipments</a>
+          </div>
+          <div class="aspect-video relative rounded-lg overflow-hidden bg-slate-200">
+            <img id="admin-map" class="w-full h-full object-cover grayscale opacity-80" src="" alt="Global Hub Map"/>
+            <div class="absolute top-1/4 left-1/3 w-4 h-4 bg-secondary rounded-full animate-pulse shadow-lg shadow-secondary/50"></div>
+            <div class="absolute bottom-1/2 right-1/4 w-3 h-3 bg-secondary rounded-full animate-pulse shadow-lg shadow-secondary/50"></div>
+            <div class="absolute top-2/3 left-1/2 w-5 h-5 bg-secondary rounded-full animate-pulse shadow-lg shadow-secondary/50"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Shipments -->
+      <section>
+        <div class="flex items-center justify-between mb-6 px-2">
+          <h2 class="text-xl font-bold text-primary font-headline">Recent Shipments</h2>
+          <a href="shipments.html" class="text-on-surface-variant text-sm font-medium hover:text-secondary transition-colors">View All →</a>
+        </div>
+        <div id="recent-shipments" class="space-y-4"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<nav class="lg:hidden fixed bottom-0 w-full bg-slate-950 text-slate-300 flex justify-around items-center h-20 z-50 border-t border-slate-800/50 safe-bottom-nav">
+  <a href="dashboard.html" class="flex flex-col items-center gap-1 text-orange-500">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">dashboard</span>
+    <span class="text-[10px] font-bold uppercase tracking-tighter">Dashboard</span>
+  </a>
+  <a href="shipments.html" class="flex flex-col items-center gap-1 text-slate-500">
+    <span class="material-symbols-outlined">inventory_2</span>
+    <span class="text-[10px] font-bold uppercase tracking-tighter">Shipments</span>
+  </a>
+  <a href="users.html" class="flex flex-col items-center gap-1 text-slate-500">
+    <span class="material-symbols-outlined">group</span>
+    <span class="text-[10px] font-bold uppercase tracking-tighter">Users</span>
+  </a>
+  <a href="../../index.html" class="flex flex-col items-center gap-1 text-slate-500">
+    <span class="material-symbols-outlined">public</span>
+    <span class="text-[10px] font-bold uppercase tracking-tighter">Site</span>
+  </a>
+</nav>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/pages/admin/dashboard.js"></script>
+</body>
+</html>

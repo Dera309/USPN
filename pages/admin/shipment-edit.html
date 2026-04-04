@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Edit Shipment | USPN Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.ambient-shadow{box-shadow:0px 12px 32px rgba(25,28,29,0.04)}
+@media(min-width:768px){body{min-height:max(884px,100dvh)}}
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<a href="#admin-main" class="skip-link">Skip to main content</a>
+
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5 h-20">
+  <div class="flex justify-between items-center max-w-full px-6 h-full">
+    <div class="flex items-center gap-3">
+      <a href="shipments.html" class="flex items-center gap-2 text-slate-600 hover:text-orange-500 transition-colors mr-4">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <span class="material-symbols-outlined text-orange-600 text-2xl">local_shipping</span>
+      <span class="text-xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+    </div>
+    <button onclick="logout()" class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm">Logout</button>
+  </div>
+</header>
+
+<div class="flex min-h-screen pt-20">
+  <aside class="hidden lg:flex flex-col w-64 fixed left-0 top-20 bottom-0 bg-slate-950 border-r border-slate-800/50 py-8 z-40">
+    <nav class="flex-1 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all"><span class="material-symbols-outlined">dashboard</span><span class="text-sm font-semibold font-headline">Dashboard</span></a>
+      <a href="shipments.html" class="flex items-center gap-4 bg-orange-600/10 text-orange-500 border-r-4 border-orange-600 px-6 py-4"><span class="material-symbols-outlined">inventory_2</span><span class="text-sm font-semibold font-headline">Shipments</span></a>
+      <a href="users.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all"><span class="material-symbols-outlined">group</span><span class="text-sm font-semibold font-headline">Users</span></a>
+      <a href="../../index.html" class="flex items-center gap-4 text-slate-500 hover:text-slate-300 px-6 py-4 hover:bg-slate-900 transition-all"><span class="material-symbols-outlined">public</span><span class="text-sm font-semibold font-headline">View Site</span></a>
+    </nav>
+  </aside>
+
+  <main id="admin-main" class="hidden flex-1 lg:ml-64 px-4 py-8 md:px-8 pb-24 lg:pb-8">
+    <div class="max-w-4xl mx-auto">
+
+      <div id="not-found-msg" class="hidden text-center py-20">
+        <h2 class="font-headline text-2xl font-bold text-primary mb-2">Shipment Not Found</h2>
+        <a href="shipments.html" class="text-secondary font-bold">← Back to Shipments</a>
+      </div>
+
+      <div id="edit-content" class="hidden">
+        <header class="mb-8 flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <span class="text-secondary font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Edit Shipment</span>
+            <h1 id="page-title" class="text-3xl font-extrabold text-primary tracking-tight font-headline"></h1>
+          </div>
+          <a href="shipments.html" class="text-on-surface-variant text-sm font-medium hover:text-secondary flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_back</span> All Shipments
+          </a>
+        </header>
+
+        <div id="save-success" class="hidden mb-6 bg-green-50 text-green-800 px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">check_circle</span> Changes saved. Tracking page updated.
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+
+          <!-- Tracking & Status -->
+          <div class="bg-surface-container-lowest rounded-2xl p-8 ambient-shadow border border-outline-variant/15 space-y-6">
+            <h3 class="font-headline font-bold text-primary flex items-center gap-2"><span class="material-symbols-outlined text-secondary">qr_code</span> Tracking & Status</h3>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Tracking Number</label>
+              <div class="flex gap-2">
+                <input id="e-tracking" type="text" placeholder="USPN-XXXX-XX"
+                  class="flex-1 bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all font-mono"/>
+                <button onclick="autoGenTracking()" class="bg-surface-container-high text-on-surface font-bold px-4 py-3 rounded-lg hover:bg-secondary hover:text-white transition-all text-sm whitespace-nowrap">Auto-Generate</button>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Status</label>
+              <select id="e-status" class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all text-on-surface">
+                <option value="Pending">Pending</option>
+                <option value="In Transit">In Transit</option>
+                <option value="Delayed">Delayed</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Estimated Delivery Date</label>
+              <input id="e-eta" type="date" class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="bg-surface-container-lowest rounded-2xl p-8 ambient-shadow border border-outline-variant/15 space-y-6">
+            <h3 class="font-headline font-bold text-primary flex items-center gap-2"><span class="material-symbols-outlined text-secondary">location_on</span> Current Location</h3>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Location Name</label>
+              <input id="e-location" type="text" placeholder="e.g. Dubai Transit Hub"
+                class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Latitude</label>
+                <input id="e-lat" type="number" step="0.0001" placeholder="e.g. 25.2048"
+                  class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Longitude</label>
+                <input id="e-lng" type="number" step="0.0001" placeholder="e.g. 55.2708"
+                  class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+              </div>
+            </div>
+
+            <!-- Shipment Info (read-only) -->
+            <div class="pt-4 border-t border-outline-variant/10 space-y-2">
+              <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Route</p>
+              <p id="e-route" class="text-primary font-medium text-sm"></p>
+              <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label mt-3">Cargo</p>
+              <p id="e-cargo-info" class="text-primary font-medium text-sm"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="flex justify-end mb-8">
+          <button onclick="saveChanges()" class="bg-secondary text-white font-headline font-extrabold px-10 py-4 rounded-lg hover:bg-secondary-container hover:text-on-secondary-container transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined">save</span> Save Changes
+          </button>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="bg-surface-container-lowest rounded-2xl p-8 ambient-shadow border border-outline-variant/15">
+          <h3 class="font-headline font-bold text-primary mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">history</span> Activity Log</h3>
+
+          <!-- Add Entry Form -->
+          <div class="bg-surface-container-low rounded-xl p-6 mb-8 space-y-4">
+            <h4 class="font-bold text-primary text-sm">Add Log Entry</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Location</label>
+                <input id="log-location" type="text" placeholder="e.g. Singapore Port"
+                  class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Event Description</label>
+                <input id="log-event" type="text" placeholder="e.g. Arrived at Sort Facility"
+                  class="w-full bg-surface-container-lowest border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-secondary/20 transition-all"/>
+              </div>
+            </div>
+            <button onclick="addLogEntry()" class="bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-secondary transition-all text-sm flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">add</span> Add Entry
+            </button>
+          </div>
+
+          <!-- Log Entries -->
+          <div id="log-entries" class="space-y-0"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+
+<nav class="lg:hidden fixed bottom-0 w-full bg-slate-950 text-slate-300 flex justify-around items-center h-20 z-50 border-t border-slate-800/50 safe-bottom-nav">
+  <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500"><span class="material-symbols-outlined">dashboard</span><span class="text-[10px] font-bold uppercase">Dashboard</span></a>
+  <a href="shipments.html" class="flex flex-col items-center gap-1 text-orange-500"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">inventory_2</span><span class="text-[10px] font-bold uppercase">Shipments</span></a>
+  <a href="users.html" class="flex flex-col items-center gap-1 text-slate-500"><span class="material-symbols-outlined">group</span><span class="text-[10px] font-bold uppercase">Users</span></a>
+</nav>
+<script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/pages/admin/shipment-edit.js"></script>
+</body>
+</html>

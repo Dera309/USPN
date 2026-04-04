@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>USPN | Global Cargo Logistics</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/pages/home.js"></script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .kinetic-gradient {
+      background: linear-gradient(135deg, #000000 0%, #0D1C32 100%)
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px)
+    }
+
+    .ambient-shadow {
+      box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04)
+    }
+
+    @media(min-width:768px) {
+      body {
+        min-height: max(884px, 100dvh)
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="fixed top-0 w-full z-[1000] bg-slate-50/70 backdrop-blur-xl shadow-xl shadow-slate-900/5">
+    <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-orange-600 text-3xl">local_shipping</span>
+        <span class="text-2xl font-black uppercase tracking-widest text-slate-950 font-headline">USPN</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html"
+          class="text-orange-600 font-extrabold border-b-2 border-orange-600 py-1 transition-colors duration-300">Home</a>
+
+        <!-- Services Dropdown-Item -->
+        <div class="nav-item-dropdown">
+          <a href="pages/services.html"
+            class="flex items-center gap-1 text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300">
+            Services <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="pages/services.html#air" class="nav-dropdown-item">Air Expedited</a>
+            <a href="pages/services.html#ocean" class="nav-dropdown-item">Ocean Link</a>
+            <a href="pages/services.html#land" class="nav-dropdown-item">Land Network</a>
+            <a href="pages/services.html#warehouse" class="nav-dropdown-item">Smart Inventory</a>
+          </div>
+        </div>
+
+        <a href="pages/tracking.html"
+          class="text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300">Tracking</a>
+
+        <!-- About Dropdown-Item -->
+        <div class="nav-item-dropdown">
+          <a href="pages/about.html"
+            class="flex items-center gap-1 text-slate-600 font-medium hover:text-orange-500 transition-colors duration-300">
+            About Us <span class="material-symbols-outlined text-sm">expand_more</span>
+          </a>
+          <div class="nav-dropdown">
+            <a href="pages/about.html#mission" class="nav-dropdown-item">Our Mission</a>
+            <a href="pages/about.html#team" class="nav-dropdown-item">Expert Team</a>
+            <a href="pages/contact.html" class="nav-dropdown-item">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-4" id="nav-auth"></div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 flex items-center justify-center"
+        aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="material-symbols-outlined text-3xl text-slate-900">menu</span>
+      </button>
+    </nav>
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-slate-50/95 backdrop-blur-xl border-t border-slate-200 px-8 py-6 space-y-4">
+      <a href="index.html" class="block text-orange-600 font-bold py-2">Home</a>
+
+      <!-- Mobile Services Dropdown -->
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex justify-between items-center text-slate-700 font-medium py-2 hover:text-orange-500">
+          Services <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="pages/services.html" class="block text-slate-600 text-sm py-1">All Services</a>
+          <a href="pages/services.html#air" class="block text-slate-600 text-sm py-1">Air Expedited</a>
+          <a href="pages/services.html#ocean" class="block text-slate-600 text-sm py-1">Ocean Link</a>
+          <a href="pages/services.html#land" class="block text-slate-600 text-sm py-1">Land Network</a>
+          <a href="pages/services.html#warehouse" class="block text-slate-600 text-sm py-1">Smart Inventory</a>
+        </div>
+      </div>
+
+      <a href="pages/tracking.html" class="block text-slate-700 font-medium py-2 hover:text-orange-500">Tracking</a>
+
+      <!-- Mobile About Dropdown -->
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex justify-between items-center text-slate-700 font-medium py-2 hover:text-orange-500">
+          About Us <span class="material-symbols-outlined chevron">expand_more</span>
+        </button>
+        <div class="mobile-dropdown-content space-y-2">
+          <a href="pages/about.html" class="block text-slate-600 text-sm py-1">Overview</a>
+          <a href="pages/about.html#mission" class="block text-slate-600 text-sm py-1">Our Mission</a>
+          <a href="pages/contact.html" class="block text-slate-600 text-sm py-1">Contact Us</a>
+        </div>
+      </div>
+
+      <div id="mobile-nav-auth" class="pt-4 space-y-3 border-t border-slate-200"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="pt-20">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[400px] md:min-h-[795px] flex items-center overflow-hidden kinetic-gradient">
+      <div class="absolute inset-0 opacity-40">
+        <img class="w-full h-full object-cover"
+          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80" alt="Cargo ship at sea" />
+      </div>
+      <div
+        class="relative max-w-7xl mx-auto px-4 sm:px-8 w-full py-12 md:py-24 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+        <div class="space-y-6 md:space-y-8">
+          <div class="space-y-2">
+            <span class="text-secondary font-bold tracking-widest uppercase text-sm font-label">Global
+              Connectivity</span>
+            <h1
+              class="text-3xl sm:text-4xl md:text-7xl font-headline font-extrabold text-white leading-tight tracking-tighter">
+              Architects of <br /><span class="text-secondary-container">Global Flow.</span>
+            </h1>
+          </div>
+          <p class="text-base sm:text-xl text-slate-300 max-w-lg leading-relaxed font-light">
+            Precision logistics for the modern enterprise. We don't just move cargo; we engineer the kinetic pathways of
+            international commerce.
+          </p>
+          <!-- Hero Tracking Search -->
+          <form id="hero-track-form"
+            class="bg-white/10 backdrop-blur p-2 rounded-xl flex flex-col sm:flex-row gap-2 max-w-xl border border-white/10">
+            <div class="flex-1 flex items-center px-3 gap-2 bg-white/10 rounded-lg min-w-0">
+              <span class="material-symbols-outlined text-white/50 flex-shrink-0 text-xl">search</span>
+              <input id="hero-track-input" type="text" placeholder="e.g. USPN-9928-EL"
+                class="bg-transparent border-none text-white placeholder:text-white/40 focus:ring-0 w-full py-3 font-body text-sm sm:text-base min-w-0" />
+            </div>
+            <button type="submit"
+              class="bg-secondary text-white px-5 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-lg hover:bg-secondary-container transition-all whitespace-nowrap flex-shrink-0">
+              Track Status
+            </button>
+          </form>
+        </div>
+        <!-- Live Manifest Card -->
+        <div class="hidden md:block relative">
+          <div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/20 blur-[100px] rounded-full"></div>
+          <div class="relative glass-panel bg-white/5 border border-white/10 rounded-2xl p-8">
+            <div class="flex justify-between items-center mb-12">
+              <div>
+                <p class="text-white/50 text-xs font-label uppercase tracking-widest">Active Manifest</p>
+                <h3 class="text-white text-xl font-headline font-bold">USPN-9928-EL</h3>
+              </div>
+              <span
+                class="bg-secondary-container/20 text-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">In
+                Transit</span>
+            </div>
+            <div class="relative flex flex-col gap-10">
+              <div class="absolute left-[11px] top-2 bottom-2 w-px bg-white/20"></div>
+              <div class="flex items-center gap-6 relative">
+                <div class="w-6 h-6 rounded-full bg-secondary ring-4 ring-secondary/20 z-10"></div>
+                <div>
+                  <p class="text-white font-bold text-sm">Hamburg Port</p>
+                  <p class="text-white/40 text-xs">Departed Oct 12, 04:30 AM</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-6 relative">
+                <div class="w-6 h-6 rounded-full bg-secondary-container z-10 animate-pulse"></div>
+                <div>
+                  <p class="text-white font-bold text-sm">Dubai Transit Hub</p>
+                  <p class="text-white/40 text-xs">In Transit</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-6 relative opacity-30">
+                <div class="w-6 h-6 rounded-full bg-white/50 z-10"></div>
+                <div>
+                  <p class="text-white font-bold text-sm">Tokyo Gateway</p>
+                  <p class="text-white/40 text-xs">Estimated Arrival Oct 28</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section class="py-16 md:py-32 bg-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-20 gap-6 md:gap-8">
+          <div class="max-w-2xl">
+            <span class="text-secondary font-bold tracking-widest uppercase text-xs font-label">Our Expertise</span>
+            <h2
+              class="text-3xl sm:text-4xl md:text-5xl font-headline font-extrabold text-on-surface mt-4 leading-tight">
+              Multi-Modal Solutions for <br />Complex Global Supply Chains.
+            </h2>
+          </div>
+          <a href="pages/services.html"
+            class="text-secondary font-bold flex items-center gap-2 group font-label uppercase tracking-wider text-sm mb-2">
+            View All Services <span
+              class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:h-[600px]">
+          <div
+            class="md:col-span-7 h-56 md:h-auto bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-6 md:p-10 ambient-shadow">
+            <img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80" alt="Air freight" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="relative z-10">
+              <h3 class="text-white text-2xl md:text-3xl font-headline font-bold mb-2">Air Expedited</h3>
+              <p class="text-white/70 max-w-md font-light text-sm md:text-base">Next-flight-out capabilities for
+                time-critical components and luxury goods worldwide.</p>
+            </div>
+          </div>
+          <div
+            class="md:col-span-5 h-48 md:h-auto bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-6 md:p-10 ambient-shadow">
+            <img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=700&q=80" alt="Ocean freight" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="relative z-10">
+              <h3 class="text-white text-2xl md:text-3xl font-headline font-bold mb-2">Ocean Link</h3>
+              <p class="text-white/70 font-light text-sm md:text-base">Sustainable LCL and FCL solutions connecting
+                major international ports.</p>
+            </div>
+          </div>
+          <div
+            class="md:col-span-5 h-48 md:h-auto bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-6 md:p-10 ambient-shadow">
+            <img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&q=80" alt="Land freight" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="relative z-10">
+              <h3 class="text-white text-2xl md:text-3xl font-headline font-bold mb-2">Land Network</h3>
+              <p class="text-white/70 font-light text-sm md:text-base">Last-mile excellence and regional trucking fleets
+                with real-time telematics.</p>
+            </div>
+          </div>
+          <div
+            class="md:col-span-7 h-56 md:h-auto bg-surface-container-low rounded-2xl overflow-hidden group relative flex flex-col justify-end p-6 md:p-10 ambient-shadow">
+            <img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80" alt="Warehouse" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="relative z-10">
+              <h3 class="text-white text-2xl md:text-3xl font-headline font-bold mb-2">Smart Inventory</h3>
+              <p class="text-white/70 max-w-md font-light text-sm md:text-base">AI-driven warehousing and fulfillment
+                hubs in strategic global trade zones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16 md:py-32 bg-primary-container text-white overflow-hidden relative">
+      <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+        <div class="w-full h-full border-l border-white/20 transform skew-x-12"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          <div class="space-y-8 md:space-y-12">
+            <div class="space-y-4">
+              <span class="text-secondary-container font-bold tracking-widest uppercase text-xs font-label">The
+                Competitive Edge</span>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-headline font-extrabold leading-tight">Built for
+                Reliability. <br />Driven by Technology.</h2>
+              <p class="text-on-primary-container text-lg leading-relaxed font-light">We combine decades of industrial
+                logistics expertise with cutting-edge digital infrastructure to provide a service that is both robust
+                and agile.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+              <div class="space-y-3">
+                <span class="material-symbols-outlined text-secondary-container text-4xl">verified_user</span>
+                <h4 class="font-headline font-bold text-xl">Tier-1 Security</h4>
+                <p class="text-on-primary-container text-sm leading-relaxed">Full insurance coverage and 24/7 terminal
+                  surveillance for all high-value assets.</p>
+              </div>
+              <div class="space-y-3">
+                <span class="material-symbols-outlined text-secondary-container text-4xl">monitoring</span>
+                <h4 class="font-headline font-bold text-xl">Real-Time Data</h4>
+                <p class="text-on-primary-container text-sm leading-relaxed">IoT-enabled containers provide live
+                  temperature, humidity, and location tracking.</p>
+              </div>
+              <div class="space-y-3">
+                <span class="material-symbols-outlined text-secondary-container text-4xl">eco</span>
+                <h4 class="font-headline font-bold text-xl">Carbon Neutral</h4>
+                <p class="text-on-primary-container text-sm leading-relaxed">Committed to net-zero logistics through SAF
+                  aviation and electric trucking.</p>
+              </div>
+              <div class="space-y-3">
+                <span class="material-symbols-outlined text-secondary-container text-4xl">support_agent</span>
+                <h4 class="font-headline font-bold text-xl">Expert Support</h4>
+                <p class="text-on-primary-container text-sm leading-relaxed">Dedicated logistics managers for every
+                  account, available around the clock.</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-square bg-white/5 rounded-full absolute -inset-10 animate-pulse border border-white/10 hidden md:block">
+            </div>
+            <div class="relative rounded-2xl overflow-hidden ambient-shadow h-72 md:h-[500px]">
+              <img class="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&q=80"
+                alt="Logistics control room" />
+              <div class="absolute bottom-0 left-0 right-0 glass-panel bg-white/10 p-6 md:p-8 border-t border-white/20">
+                <div class="flex items-center justify-between sm:justify-around text-center flex-wrap gap-y-6 gap-x-2">
+                  <div class="flex-1 min-w-[30%]">
+                    <p class="text-2xl sm:text-3xl font-headline font-extrabold text-secondary-container">99.8%</p>
+                    <p
+                      class="text-[0.65rem] sm:text-xs uppercase tracking-widest text-on-primary-container mt-1 break-words">
+                      On-Time</p>
+                  </div>
+                  <div class="hidden sm:block w-px h-10 bg-white/10"></div>
+                  <div class="flex-1 min-w-[30%]">
+                    <p class="text-2xl sm:text-3xl font-headline font-extrabold text-secondary-container">142+</p>
+                    <p
+                      class="text-[0.65rem] sm:text-xs uppercase tracking-widest text-on-primary-container mt-1 break-words">
+                      Countries</p>
+                  </div>
+                  <div class="hidden sm:block w-px h-10 bg-white/10"></div>
+                  <div class="flex-1 min-w-[30%]">
+                    <p class="text-2xl sm:text-3xl font-headline font-extrabold text-secondary-container">12M</p>
+                    <p
+                      class="text-[0.65rem] sm:text-xs uppercase tracking-widest text-on-primary-container mt-1 break-words">
+                      Tons/Yr</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote CTA Banner -->
+    <section class="py-16 md:py-20 bg-surface-container-low">
+      <div class="max-w-4xl mx-auto px-4 sm:px-8 text-center space-y-6">
+        <span class="text-secondary font-bold tracking-widest uppercase text-xs font-label">Instant Estimate</span>
+        <h2 class="text-4xl font-headline font-extrabold text-on-surface">How much will your shipment cost?</h2>
+        <p class="text-on-surface-variant text-lg">Use our quote calculator to get an instant price estimate before
+          booking.</p>
+        <a href="pages/quote.html"
+          class="inline-block bg-secondary text-white px-10 py-4 rounded-lg font-headline font-bold text-lg hover:bg-secondary-container hover:text-on-secondary-container transition-all">
+          Get a Free Quote
+        </a>
+      </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-12 md:py-16 bg-surface-container-low border-t border-outline-variant/10">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-wrap justify-center md:justify-between items-center gap-6 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+        <span class="text-2xl font-black font-headline tracking-tighter text-on-surface">ISO 9001</span>
+        <span class="text-2xl font-black font-headline tracking-tighter text-on-surface">AEO CERTIFIED</span>
+        <span class="text-2xl font-black font-headline tracking-tighter text-on-surface">IATA AGENT</span>
+        <span class="text-2xl font-black font-headline tracking-tighter text-on-surface">SMETA COMPLIANT</span>
+        <span class="text-2xl font-black font-headline tracking-tighter text-on-surface">FIATA</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="w-full py-12 bg-slate-950 border-t border-slate-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-orange-500">local_shipping</span>
+            <span class="text-white font-bold font-headline uppercase tracking-widest">USPN</span>
+          </div>
+          <p class="text-slate-400 text-sm max-w-xs leading-relaxed">Pioneering high-precision global logistics and
+            supply chain architecture for industry leaders worldwide.</p>
+        </div>
+        <div class="flex flex-wrap gap-12">
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Navigation</h4>
+            <ul class="space-y-2">
+              <li><a href="index.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Home</a></li>
+              <li><a href="pages/services.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Services</a></li>
+              <li><a href="pages/tracking.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Tracking</a></li>
+              <li><a href="pages/contact.html"
+                  class="text-slate-500 text-sm hover:text-orange-400 transition-all">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="pages/about.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">About
+                  Us</a></li>
+              <li><a href="pages/quote.html" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Get a
+                  Quote</a></li>
+              <li><a href="#" class="text-slate-500 text-sm hover:text-orange-400 transition-all">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-400">&copy; 2024 USPN. All rights reserved.</p>
+        <div class="flex gap-8 text-xs text-slate-600 font-label uppercase tracking-widest">
+          <span>London</span><span>Shanghai</span><span>New York</span><span>Singapore</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

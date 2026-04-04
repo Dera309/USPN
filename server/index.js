@@ -56,24 +56,44 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().t
 
 // ── Static Assets & Catch-all ──────────────────────────────────────────────
 const distPath = path.join(__dirname, '../dist')
-app.use(express.static(distPath))
 
-// Catch-all: serve the correct built HTML page, or fall back to index.html
+// Warn at startup if dist doesn't exist (build may have failed)
+if (!fs.existsSync(distPath)) {
+  console.error('[WARN] dist/ directory not found. Did the build step complete?')
+} else {
+  console.log('[OK] dist/ directory found at', distPath)
+}
+
+// Serve all built static assets (JS, CSS, images, etc.) from dist/
+app.use(express.static(distPath, { index: false }))
+
+// Catch-all: ONLY handle navigation routes (no file extension = page request)
+// Asset requests (JS/CSS/images) that weren't found will naturally 404 via express.static
 app.get('*', (req, res) => {
-  if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Endpoint not found.' })
-
-  // Try to serve the exact requested file from dist
-  const requestedFile = path.join(distPath, req.path)
-  const htmlFile = requestedFile.endsWith('.html') ? requestedFile : requestedFile + '.html'
-
-  if (fs.existsSync(requestedFile) && !fs.statSync(requestedFile).isDirectory()) {
-    return res.sendFile(requestedFile)
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'Endpoint not found.' })
   }
-  if (fs.existsSync(htmlFile)) {
-    return res.sendFile(htmlFile)
+
+  // If the request has a file extension (e.g. .js, .css, .png), do NOT intercept -
+  // let it 404 naturally rather than serving wrong content
+  const ext = path.extname(req.path)
+  if (ext && ext !== '.html') {
+    return res.status(404).send('File not found.')
   }
-  // Fallback to index.html
-  res.sendFile(path.join(distPath, 'index.html'))
+
+  // Try to serve the exact matching .html file from dist
+  const requestedHtml = path.join(distPath, req.path.endsWith('.html') ? req.path : req.path + '.html')
+  if (fs.existsSync(requestedHtml)) {
+    return res.sendFile(requestedHtml)
+  }
+
+  // Fall back to index.html
+  const indexFile = path.join(distPath, 'index.html')
+  if (fs.existsSync(indexFile)) {
+    return res.sendFile(indexFile)
+  }
+
+  res.status(500).send('App not built. Run npm run build first.')
 })
 
 // ── Global error handler ───────────────────────────────────────────────────

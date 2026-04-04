@@ -17,6 +17,16 @@ const __dirname  = path.dirname(__filename)
 const app  = express()
 const PORT = process.env.PORT || 5000
 
+// ── Serve static files FIRST (before CORS/auth middleware) ─────────────────
+// This ensures JS/CSS assets are never blocked by CORS checks
+const distPath = path.join(__dirname, '../dist')
+if (!fs.existsSync(distPath)) {
+  console.error('[WARN] dist/ directory not found. Did the build step complete?')
+} else {
+  console.log('[OK] dist/ directory found at', distPath)
+}
+app.use(express.static(distPath, { index: false }))
+
 // ── Middleware ─────────────────────────────────────────────────────────────
 const allowedOrigins = [
   'http://localhost:3000',
@@ -27,11 +37,13 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
+    // Allow requests with no origin (mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true)
+    // Allow localhost and configured FRONTEND_URL
+    if (allowedOrigins.some(o => origin.startsWith(o))) return callback(null, true)
+    // Allow any onrender.com subdomain (covers URL changes after redeploys)
+    if (origin.endsWith('.onrender.com')) return callback(null, true)
+    callback(new Error('Not allowed by CORS'))
   },
   credentials: true
 }))
@@ -53,19 +65,6 @@ app.use('/api/users',     userRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }))
-
-// ── Static Assets & Catch-all ──────────────────────────────────────────────
-const distPath = path.join(__dirname, '../dist')
-
-// Warn at startup if dist doesn't exist (build may have failed)
-if (!fs.existsSync(distPath)) {
-  console.error('[WARN] dist/ directory not found. Did the build step complete?')
-} else {
-  console.log('[OK] dist/ directory found at', distPath)
-}
-
-// Serve all built static assets (JS, CSS, images, etc.) from dist/
-app.use(express.static(distPath, { index: false }))
 
 // Catch-all: ONLY handle navigation routes (no file extension = page request)
 // Asset requests (JS/CSS/images) that weren't found will naturally 404 via express.static

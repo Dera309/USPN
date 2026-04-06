@@ -56,8 +56,8 @@
 
     .nav-item-dropdown:hover .nav-dropdown,
     .nav-item-dropdown:focus-within .nav-dropdown {
-        opacity: 1;
-        visibility: visible;
+        opacity: 1 !important;
+        visibility: visible !important;
         transform: translateX(-50%) translateY(0);
         z-index: 9999;
     }
@@ -78,37 +78,25 @@
     }
 }
 
-/* Mobile Dropdown — Accordion */
+/* Mobile Dropdown — Simplified — Transition handled in responsive.css */
 @media (max-width: 767px) {
     .mobile-dropdown-content {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.35s ease, padding 0.2s ease;
+        transition: max-height 0.35s ease;
         padding-left: 1rem;
-        padding-top: 0;
-        padding-bottom: 0;
     }
 
-    .mobile-dropdown-toggle.active+.mobile-dropdown-content {
-        max-height: 400px;
-        padding-top: 0.25rem;
-        padding-bottom: 0.5rem;
+    /* Mobile header expansion inherits from global rule */
+    header nav {
+        min-height: 4.5rem;
     }
+}
 
-    .mobile-dropdown-toggle .chevron {
-        transition: transform 0.3s ease;
-        display: inline-block;
-    }
-
-    .mobile-dropdown-toggle.active .chevron {
-        transform: rotate(180deg);
-    }
-
-    /* Ensure header doesn't clip the open mobile menu */
-    header {
-        overflow: visible !important;
-        z-index: 1000 !important;
-    }
+/* ── Global Header Fix ────────────────────────────────────────────────────── */
+header {
+    overflow: visible !important;
+    z-index: 1000 !important;
 }
 
 /* Ghost border fallback for accessibility */

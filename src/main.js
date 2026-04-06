@@ -15,6 +15,8 @@ export function initNavbar() {
     mBtn.addEventListener('click', () => {
       const isOpen = !mMenu.classList.contains('hidden')
       if (isOpen) {
+        // Clamp overflow to hidden before animating closed
+        mMenu.style.overflow = 'hidden'
         mMenu.classList.add('hidden')
         mBtn.setAttribute('aria-expanded', 'false')
         mBtn.querySelector('.material-symbols-outlined').textContent = 'menu'
@@ -22,19 +24,47 @@ export function initNavbar() {
         mMenu.classList.remove('hidden')
         mBtn.setAttribute('aria-expanded', 'true')
         mBtn.querySelector('.material-symbols-outlined').textContent = 'close'
+        // After open animation finishes, allow sub-dropdowns to overflow
+        setTimeout(() => {
+          if (!mMenu.classList.contains('hidden')) {
+            mMenu.style.overflow = 'visible'
+          }
+        }, 380)
       }
     })
   }
 
-  // Mobile accordion dropdowns
+  // Mobile accordion dropdowns — JS-driven, not CSS-only
   document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
     btn.addEventListener('click', function () {
-      const isActive = this.classList.contains('active')
+      const content = this.nextElementSibling // .mobile-dropdown-content
+      if (!content) return
+
+      const isOpen = this.classList.contains('active')
+
       // Close all other open dropdowns first
       document.querySelectorAll('.mobile-dropdown-toggle.active').forEach(other => {
-        if (other !== this) other.classList.remove('active')
+        if (other !== this) {
+          other.classList.remove('active')
+          const otherContent = other.nextElementSibling
+          if (otherContent) otherContent.style.maxHeight = '0'
+        }
       })
-      this.classList.toggle('active', !isActive)
+
+      if (isOpen) {
+        // Collapse
+        this.classList.remove('active')
+        content.style.maxHeight = '0'
+      } else {
+        // Expand to actual content height
+        this.classList.add('active')
+        // Recalculate scrollHeight to ensure it's accurate even after dynamic content injection
+        content.style.maxHeight = content.scrollHeight + 'px'
+        
+        // Ensure parent mobile-menu is visible and height transitions smoothly
+        const mMenu = document.getElementById('mobile-menu')
+        if (mMenu) mMenu.style.maxHeight = '1200px'
+      }
     })
   })
 

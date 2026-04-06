@@ -46,7 +46,7 @@ video {
 
   header nav,
   header>div {
-    height: calc(5rem + env(safe-area-inset-top));
+    min-height: calc(5rem + env(safe-area-inset-top));
     align-items: flex-end;
     padding-bottom: 0.75rem;
   }
@@ -101,8 +101,7 @@ textarea:focus-visible {
 /* Scoped to mobile only — on desktop md:hidden handles visibility */
 @media (max-width: 767px) {
   #mobile-menu {
-    transition: max-height 0.3s ease, opacity 0.2s ease;
-    /* overflow must be hidden during animation, then visible when open */
+    transition: max-height 0.35s ease, opacity 0.2s ease;
     overflow: hidden;
   }
 
@@ -121,13 +120,15 @@ textarea:focus-visible {
     max-height: 1200px !important;
     opacity: 1;
     pointer-events: auto;
-    overflow: hidden;
+    /* overflow must be visible after animation so accordion sub-dropdowns can expand */
+    overflow: visible;
+    /* Solid background to ensure legibility over Hero content */
+    background-color: rgb(248, 250, 252); /* slate-50 */
   }
 
   #mobile-menu-btn {
     padding: 0.5rem !important;
   }
-
 
   #mobile-menu a {
     padding: 0.625rem 0 !important;
@@ -181,24 +182,26 @@ textarea {
 }
 
 
-/* ── Mobile dropdown toggles ────────────────────────────────────────────────── */
+/* ── Mobile dropdown toggles ───────────────────────────────────────────────── */
+/* JS in main.js drives maxHeight via scrollHeight — CSS owns transition & chevron */
 @media (max-width: 767px) {
   .mobile-dropdown-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.35s ease;
   }
 
+  /* CSS fallback (in case JS hasn't run yet) */
   .mobile-dropdown-toggle.active + .mobile-dropdown-content {
     max-height: 500px;
   }
 
-  .mobile-dropdown-toggle.active .chevron {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
-  }
-
   .mobile-dropdown-toggle .chevron {
     transition: transform 0.3s ease;
+    display: inline-block;
+  }
+
+  .mobile-dropdown-toggle.active .chevron {
+    transform: rotate(180deg);
   }
 }

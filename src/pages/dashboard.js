@@ -78,8 +78,13 @@ window.showTab = showTab
 
         empty.classList.add('hidden')
         list.classList.remove('hidden')
-        list.innerHTML = shipments.map(s => `
-          <a href="tracking.html?id=${s._id}" class="group bg-surface-container-lowest p-6 rounded-xl ambient-shadow border border-outline-variant/15 flex items-center justify-between hover:bg-surface-container-high transition-colors">
+        list.innerHTML = shipments.map(s => {
+          // Use tracking number in URL if assigned; fall back to _id for unassigned shipments
+          const trackParam = s.trackingNumber
+            ? encodeURIComponent(s.trackingNumber)
+            : s._id
+          return `
+          <a href="tracking.html?id=${trackParam}" class="group bg-surface-container-lowest p-6 rounded-xl ambient-shadow border border-outline-variant/15 flex items-center justify-between hover:bg-surface-container-high transition-colors">
             <div class="flex items-center gap-6">
               <div class="hidden sm:flex h-12 w-12 items-center justify-center bg-surface-container-low rounded-lg">
                 <span class="material-symbols-outlined text-outline">package_2</span>
@@ -94,7 +99,8 @@ window.showTab = showTab
               ${DB.statusChip(s.status)}
               <span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">chevron_right</span>
             </div>
-          </a>`).join('')
+          </a>`
+        }).join('')
       } catch (err) {
         console.error('[DASHBOARD] Render error:', err)
         list.innerHTML = `<div class="text-error text-center p-8">Failed to load shipments. Please try again.</div>`

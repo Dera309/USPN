@@ -14,6 +14,13 @@ const STATUS_STEP = { 'Pending':0,'In Transit':2,'Delayed':2,'Delivered':3,'Canc
 
 // Utilities and Shared navbar/logout/toasts come from src/main.js & assets/js/data.js
 
+function safeLocation(val, fallback = 'En Route') {
+  if (!val) return fallback
+  // Suppress raw MongoDB ObjectId strings (24 hex chars)
+  if (/^[0-9a-fA-F]{24}$/.test(String(val).trim())) return fallback
+  return String(val)
+}
+
 function renderTracking(shipment) {
   document.getElementById('not-found').classList.add('hidden')
   const results = document.getElementById('tracking-results')
@@ -21,7 +28,7 @@ function renderTracking(shipment) {
   results.classList.remove('hidden')
   results.classList.add('fade-in')
   document.getElementById('res-tracking-num').textContent = 'Shipment #' + (shipment.trackingNumber || 'Pending')
-  document.getElementById('res-route').textContent = shipment.origin + ' → ' + shipment.destination
+  document.getElementById('res-route').textContent = safeLocation(shipment.origin, 'Origin') + ' → ' + safeLocation(shipment.destination, 'Destination')
   document.getElementById('res-status-chip').innerHTML = DB.statusChip(shipment.status)
 
   const activeStep = STATUS_STEP[shipment.status] ?? 0
@@ -82,12 +89,15 @@ function renderTracking(shipment) {
       </div>
     </div>`).join('')
 
+  const displayLocation = safeLocation(shipment.currentLocation, safeLocation(shipment.origin, 'En Route'))
   const mapImg = document.getElementById('map-img')
-  document.getElementById('map-location-text').textContent = shipment.currentLocation || shipment.origin
+  document.getElementById('map-location-text').textContent = displayLocation
   if (shipment.currentLat && shipment.currentLng) {
     mapImg.src = `https://maps.googleapis.com/maps/api/staticmap?center=${shipment.currentLat},${shipment.currentLng}&zoom=9&size=600x300&maptype=roadmap&markers=color:0xFE6B00|${shipment.currentLat},${shipment.currentLng}&key=${MAPS_KEY}`
+  } else if (displayLocation !== 'En Route') {
+    mapImg.src = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(displayLocation)}&zoom=8&size=600x300&maptype=roadmap&markers=color:0xFE6B00|${encodeURIComponent(displayLocation)}&key=${MAPS_KEY}`
   } else {
-    mapImg.src = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(shipment.currentLocation||shipment.origin)}&zoom=8&size=600x300&maptype=roadmap&markers=color:0xFE6B00|${encodeURIComponent(shipment.currentLocation||shipment.origin)}&key=${MAPS_KEY}`
+    mapImg.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&q=60'
   }
   mapImg.onerror = () => { mapImg.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&q=60' }
 
@@ -150,7 +160,12 @@ async function doLookup(num) {
 
 const params = new URLSearchParams(window.location.search)
 const preId = params.get('id')
-if (preId) { document.getElementById('track-input').value = preId; doLookup(preId) }
+if (preId) {
+  // Only display clean tracking numbers in the input — hide raw MongoDB IDs
+  const isMongoId = /^[0-9a-fA-F]{24}$/.test(preId)
+  document.getElementById('track-input').value = isMongoId ? '' : preId
+  doLookup(preId)
+}
 
 document.getElementById('track-form').addEventListener('submit', function(e) {
   e.preventDefault()

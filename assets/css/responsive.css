@@ -116,14 +116,16 @@ textarea:focus-visible {
   }
 
   #mobile-menu:not(.hidden) {
-    /* Large enough to fit all content including expanded sub-dropdowns */
-    max-height: 1200px !important;
+    /* Limit height to viewport minus navbar and enable scrolling */
+    max-height: calc(100dvh - 5rem) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    
     opacity: 1;
     pointer-events: auto;
-    /* overflow must be visible after animation so accordion sub-dropdowns can expand */
-    overflow: visible;
     /* Solid background to ensure legibility over Hero content */
     background-color: rgb(248, 250, 252); /* slate-50 */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
 
   #mobile-menu-btn {

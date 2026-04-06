@@ -60,10 +60,6 @@ export function initNavbar() {
         this.classList.add('active')
         // Recalculate scrollHeight to ensure it's accurate even after dynamic content injection
         content.style.maxHeight = content.scrollHeight + 'px'
-        
-        // Ensure parent mobile-menu is visible and height transitions smoothly
-        const mMenu = document.getElementById('mobile-menu')
-        if (mMenu) mMenu.style.maxHeight = '1200px'
       }
     })
   })

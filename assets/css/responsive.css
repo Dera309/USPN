@@ -119,6 +119,7 @@ textarea:focus-visible {
     /* Limit height to viewport minus navbar and enable scrolling */
     max-height: calc(100dvh - 5rem) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
     
     opacity: 1;

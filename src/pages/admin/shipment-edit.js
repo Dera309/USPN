@@ -40,11 +40,28 @@ async function loadShipment() {
 }
 
 async function autoGenTracking() {
+  const btn = document.getElementById('auto-gen-btn');
+  if (!btn) return;
+
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm mr-2">sync</span> Generating...';
+
   try {
     const data = await DB.generateTrackingNumber();
-    document.getElementById('e-tracking').value = data;
+    if (data && data.error) {
+      showToast(data.error, 'error');
+    } else if (data) {
+      document.getElementById('e-tracking').value = data;
+      showToast('Tracking number generated successfully.');
+    } else {
+      showToast('Failed to generate tracking number.', 'error');
+    }
   } catch (err) {
-    showToast('Failed to generate tracking number.', 'error');
+    showToast(err.message || 'Failed to generate tracking number.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
   }
 }
 

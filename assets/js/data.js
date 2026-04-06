@@ -177,9 +177,11 @@ export const DB = {
       const res = await fetch('/api/shipments/generate-tracking', {
         method: 'POST', credentials: 'include', headers: authHeader()
       })
+      if (res.status === 401) { handle401(); return { error: 'Not authenticated.' } }
+      if (!res.ok) return { error: `Server error: ${res.status}` }
       const data = await safeJson(res)
-      return data.trackingNumber || null
-    } catch { return null }
+      return data.trackingNumber ? data.trackingNumber : { error: 'Invalid response from server.' }
+    } catch { return { error: 'Cannot connect to server.' } }
   },
 
   async getUsers() {

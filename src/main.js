@@ -15,8 +15,6 @@ export function initNavbar() {
     mBtn.addEventListener('click', () => {
       const isOpen = !mMenu.classList.contains('hidden')
       if (isOpen) {
-        // Clamp overflow to hidden before animating closed
-        mMenu.style.overflow = 'hidden'
         mMenu.classList.add('hidden')
         mBtn.setAttribute('aria-expanded', 'false')
         mBtn.querySelector('.material-symbols-outlined').textContent = 'menu'
@@ -24,12 +22,6 @@ export function initNavbar() {
         mMenu.classList.remove('hidden')
         mBtn.setAttribute('aria-expanded', 'true')
         mBtn.querySelector('.material-symbols-outlined').textContent = 'close'
-        // After open animation finishes, allow sub-dropdowns to overflow
-        setTimeout(() => {
-          if (!mMenu.classList.contains('hidden')) {
-            mMenu.style.overflow = 'visible'
-          }
-        }, 380)
       }
     })
   }

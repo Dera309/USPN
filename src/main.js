@@ -8,72 +8,91 @@ window.DB = DB
 
 // Shared Navbar Logic
 export function initNavbar() {
-  if (window._navbarInitialized) return;
-  window._navbarInitialized = true;
-
   const mBtn = document.getElementById('mobile-menu-btn')
   const mMenu = document.getElementById('mobile-menu')
 
+  // ── Hamburger toggle ────────────────────────────────────────────────────────
   if (mBtn && mMenu) {
-    mBtn.addEventListener('click', () => {
+    // Remove any previously attached handler to prevent duplicates
+    if (mBtn._hamburgerHandler) {
+      mBtn.removeEventListener('click', mBtn._hamburgerHandler)
+    }
+
+    mBtn._hamburgerHandler = function () {
       const isOpen = !mMenu.classList.contains('hidden')
       if (isOpen) {
         mMenu.classList.add('hidden')
         mBtn.setAttribute('aria-expanded', 'false')
-        mBtn.querySelector('.material-symbols-outlined').textContent = 'menu'
+        const icon = mBtn.querySelector('.material-symbols-outlined')
+        if (icon) icon.textContent = 'menu'
       } else {
         mMenu.classList.remove('hidden')
         mBtn.setAttribute('aria-expanded', 'true')
-        mBtn.querySelector('.material-symbols-outlined').textContent = 'close'
+        const icon = mBtn.querySelector('.material-symbols-outlined')
+        if (icon) icon.textContent = 'close'
       }
-    })
+    }
 
-    // Auto-close menu when clicking a direct link (excludes accordion toggles)
-    mMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mMenu.classList.add('hidden')
-        mBtn.setAttribute('aria-expanded', 'false')
-        mBtn.querySelector('.material-symbols-outlined').textContent = 'menu'
-      })
-    })
+    mBtn.addEventListener('click', mBtn._hamburgerHandler)
+
+    // ── Auto-close on any link click inside menu (delegated — covers dynamic auth links too)
+    if (!mMenu._closeHandler) {
+      mMenu._closeHandler = function (e) {
+        const link = e.target.closest('a')
+        if (link) {
+          mMenu.classList.add('hidden')
+          mBtn.setAttribute('aria-expanded', 'false')
+          const icon = mBtn.querySelector('.material-symbols-outlined')
+          if (icon) icon.textContent = 'menu'
+        }
+      }
+      mMenu.addEventListener('click', mMenu._closeHandler)
+    }
   }
 
-  // Mobile accordion dropdowns — JS-driven, not CSS-only
+  // ── Mobile accordion dropdowns ──────────────────────────────────────────────
   document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const content = this.nextElementSibling // .mobile-dropdown-content
+    if (btn._accordionHandler) {
+      btn.removeEventListener('click', btn._accordionHandler)
+    }
+
+    btn._accordionHandler = function () {
+      const content = this.nextElementSibling
       if (!content) return
 
       const isOpen = this.classList.contains('active')
 
-      // Close all other open dropdowns first
+      // Close all other open dropdowns
       document.querySelectorAll('.mobile-dropdown-toggle.active').forEach(other => {
         if (other !== this) {
           other.classList.remove('active')
           const otherContent = other.nextElementSibling
-          if (otherContent) otherContent.style.maxHeight = '0'
+          if (otherContent) {
+            otherContent.style.maxHeight = '0'
+            otherContent.style.opacity = '0'
+          }
         }
       })
 
       if (isOpen) {
-        // Collapse
         this.classList.remove('active')
         content.style.maxHeight = '0'
+        content.style.opacity = '0'
       } else {
-        // Expand to actual content height
         this.classList.add('active')
-        // Recalculate scrollHeight to ensure it's accurate even after dynamic content injection
         content.style.maxHeight = content.scrollHeight + 'px'
+        content.style.opacity = '1'
       }
-    })
+    }
+
+    btn.addEventListener('click', btn._accordionHandler)
   })
 
-  // Auth Nav Injection
+  // ── Auth Nav Injection ──────────────────────────────────────────────────────
   const user = DB.getCurrentUser()
   const navAuth = document.getElementById('nav-auth')
   const mobileAuth = document.getElementById('mobile-nav-auth')
 
-  // Calculate relative path to root
   const path = window.location.pathname
   const depth = path.split('/').filter(p => p && !p.endsWith('.html')).length
   const root = depth === 0 ? './' : '../'.repeat(depth)
@@ -102,7 +121,7 @@ export function initNavbar() {
   }
 }
 
-// Auto-init if DOM is ready
+// Auto-init when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initNavbar)
 } else {

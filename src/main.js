@@ -8,6 +8,9 @@ window.DB = DB
 
 // Shared Navbar Logic
 export function initNavbar() {
+  if (window._navbarInitialized) return;
+  window._navbarInitialized = true;
+
   const mBtn = document.getElementById('mobile-menu-btn')
   const mMenu = document.getElementById('mobile-menu')
 
@@ -23,6 +26,15 @@ export function initNavbar() {
         mBtn.setAttribute('aria-expanded', 'true')
         mBtn.querySelector('.material-symbols-outlined').textContent = 'close'
       }
+    })
+
+    // Auto-close menu when clicking a direct link (excludes accordion toggles)
+    mMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mMenu.classList.add('hidden')
+        mBtn.setAttribute('aria-expanded', 'false')
+        mBtn.querySelector('.material-symbols-outlined').textContent = 'menu'
+      })
     })
   }
 

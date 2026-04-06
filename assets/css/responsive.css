@@ -190,17 +190,23 @@ textarea {
 @media (max-width: 767px) {
   .mobile-dropdown-content {
     max-height: 0;
+    opacity: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  }
+
+  /* When active, make visible */
+  .mobile-dropdown-toggle.active + .mobile-dropdown-content {
+    opacity: 1;
   }
 
   /* CSS fallback (in case JS hasn't run yet) */
-  .mobile-dropdown-toggle.active + .mobile-dropdown-content {
+  .no-js .mobile-dropdown-toggle.active + .mobile-dropdown-content {
     max-height: 500px;
   }
 
   .mobile-dropdown-toggle .chevron {
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
   }
 
@@ -208,3 +214,4 @@ textarea {
     transform: rotate(180deg);
   }
 }
+

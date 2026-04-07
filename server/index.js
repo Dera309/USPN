@@ -31,6 +31,8 @@ app.use(express.static(distPath, { index: false }))
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
+  'http://localhost:5000',
+  'http://localhost:5005',
   'http://localhost:5173',
   process.env.FRONTEND_URL
 ].filter(Boolean)
@@ -39,11 +41,19 @@ app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (mobile apps, curl, server-to-server)
     if (!origin) return callback(null, true)
-    // Allow localhost and configured FRONTEND_URL
-    if (allowedOrigins.some(o => origin.startsWith(o))) return callback(null, true)
-    // Allow any onrender.com subdomain (covers URL changes after redeploys)
-    if (origin.endsWith('.onrender.com')) return callback(null, true)
-    callback(new Error('Not allowed by CORS'))
+    
+    // Allow any localhost or 127.0.0.1 in development
+    const isLocal = origin.startsWith('http://localhost:') || 
+                    origin.startsWith('http://127.0.0.1:') ||
+                    origin === 'http://localhost' || 
+                    origin === 'http://127.0.0.1'
+
+    if (isLocal || allowedOrigins.some(o => origin.startsWith(o)) || origin.endsWith('.onrender.com')) {
+      return callback(null, true)
+    }
+    
+    // Return false instead of an Error to avoid 500 status on CORS rejection
+    callback(null, false)
   },
   credentials: true
 }))
